@@ -24,10 +24,17 @@ Console.WriteLine($"Olá {heroi.Nome}, você tem {heroi.Vida} de vida.");
 
 
 // ganhou uma poção de cura
-heroi.Vida = heroi.Vida + 50;
+
 
 Console.WriteLine($"Olá {heroi.Nome}, você tem {heroi.Vida} de vida.");
 
+void PocaodeCura(Personagem heroi){
+    
+    heroi.Vida = heroi.Vida + 50;
+
+
+
+}
 
 public class Personagem {
     public string Nome { get; set; }
