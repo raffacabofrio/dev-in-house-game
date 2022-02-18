@@ -1,17 +1,47 @@
 ﻿class FlowEngine
 {
-    public void Fluxo(Personagem heroi)
+    public void Historia()
     {
-        Console.WriteLine($"Bem vindo Ao jogo {heroi.Nome}");
-        Historia();
-        Console.ReadKey();
-        var decisao = 3;
+        var batalha = new BattleEngine();
+        var monstro = new MonsterEngine();
+
+        Console.WriteLine("Qual e o seu nome heroi ? ");
+        var nome = Console.ReadLine();
+        var heroi = new Personagem
+        {
+            Nome = nome,
+            Vida = 100,
+            Armadura = 5,
+            Ataque = 5,
+            AtaqueCritico = 10,
+        };
+
+        Console.WriteLine(@"Na cidade de Neverwinter um anão chamado Gundren
+                            Buscapedra tenta lhe contratar para escoltar uma carroça de
+                            suprimentos, até a vila sem lei de Phandalin, que fica
+                            há dois dias e viagem a sudeste da cidade. Voce aceitara* o contrato? " );
+                            
+
+        var caminho = Fluxo(heroi,"sim","nao"); 
+        if(caminho == 1) {
+            Console.WriteLine("Grunden na verdade era Ganon e quando voce vira as costas ele te ataca");   
+            batalha.Turno(monstro.Ganon(), heroi);
+            if(heroi.Vida <= 0) {
+                GameOver($"Voce foi morto pelo {monstro.Ganon().Nome}");
+            }
+        }                  
+
+    }
+    public int Fluxo(Personagem heroi, string opcao_1, string opcao_2 )
+    {
+        
+        var decisao = 1;
         bool inputValido2 = false;
-        List<string> caminhos = new List<string> { "Esquerda", "Direita", "Floresta Maligna", "Mar Baltico" };
+
+        List<string> caminhos = new List<string> { opcao_1, opcao_2};
         do
         {
-            Console.WriteLine("----------------------");
-            Console.WriteLine($"O que voce deseja fazer {heroi.Nome} ? ");
+
             int x = 0;
             foreach (string opcoes in caminhos)
             {
@@ -29,48 +59,14 @@
             }
         } while (!inputValido2);
 
-        Caminho(decisao);
-    }
-    void Historia()
-    {
-        Console.WriteLine("Voce se encontra escoltando uma carroca, de um lugar A a um lugar B. ");
-        Console.WriteLine("Proximo ao meio-dia goblins cercam sua carroca!.");
-    }
-    public void Caminho(int fluxo)
-    {
-
-        void Direita()
-        {
-            Console.WriteLine("Voce escolheu ir para a direita");
-        }
-        void Esquerda()
-        {
-            Console.WriteLine("Voce escolheu ir para a esquerda");
-        }
-        void FlorestaMaligna()
-        {
-            Console.WriteLine("Voce escolheu ir pra floresta maligna");
-        }
-        void MarBaltico()
-        {
-            Console.WriteLine("Voce escolheu ir pra o Mar Baltico");
-        }
+        return decisao; 
         
-        switch (fluxo)
-        {
-            case 0:
-                Esquerda();
-                break;
-            case 1:
-                Direita();
-                break;
-            case 2:
-                FlorestaMaligna();
-                break;
-            case 3:
-                MarBaltico();
-                break;
-        }
     }
     
+   
+    public void GameOver(string mensagem) {
+        Console.WriteLine(mensagem);
+        Environment.Exit(0);
+    }
+
 }
