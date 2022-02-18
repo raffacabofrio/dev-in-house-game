@@ -1,6 +1,4 @@
-﻿using static Battle;
-
-var instance = new Battle();
+﻿var Battle = new Battle();
 
 var heroi = new Personagem{
     Nome = "Link",
@@ -19,7 +17,7 @@ var goblim = new Personagem{
 };
 
 while(heroi.Vida > 0 && goblim.Vida > 0) {
-    instance.turno(heroi, goblim);
+    Battle.turno(heroi, goblim);
 }
 void Maca(Personagem heroi){
     
