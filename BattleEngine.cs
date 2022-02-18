@@ -1,55 +1,64 @@
 public class BattleEngine
 {
-
     public void Turno(Personagem p1, Personagem p2)
     {
-        Ataque(p1, p2);
-        if (p2.Vida <= 0)
-        {
-            Console.WriteLine($"{p2.Nome} morreu!");
-            return;
-        }
+        do{
+            Thread.Sleep(900);
+            Ataque(p1, p2);
+            if (p2.Vida <= 0)
+            {
+                Console.WriteLine($"{p2.Nome} morreu!");
+                return;
+            }
 
-        Ataque(p2, p1);
-        if (p1.Vida <= 0)
-        {
-            Console.WriteLine($"{p1.Nome} morreu!");
-            return;
-        }
+            Thread.Sleep(2000);
+            Ataque(p2, p1);
+            if (p1.Vida <= 0)
+            {
+                Console.WriteLine($"{p1.Nome} morreu!");
+                return;
+            }
+            
+            Console.WriteLine("O turno acabou!");
+            Thread.Sleep(500);
+            Console.WriteLine("Pressione 'Enter' para rodar o dado...");
+            Console.ReadKey();
+
+        } while (p1.Vida > 0 && p2.Vida > 0 );
     }
-    public void Ataque(Personagem p1, Personagem p2)
+    public void Ataque(Personagem atacante, Personagem oponente)
     {
-        int vidaInicialp2 = p2.Vida;
 
         Random number = new Random();
         int resultadoDado = number.Next(11);
+        int maxDuracao = 3;
 
         Console.WriteLine($"Resultado do dado: {resultadoDado}");
+        Thread.Sleep(maxDuracao * resultadoDado * 100);
 
         int atk;
 
         if (resultadoDado == 10)
         {
-            Console.WriteLine($"Wow, {p1.Nome} fez um ataque crítico!");
-            atk = resultadoDado + p1.AtaqueCritico;
+            Console.WriteLine($"Wow, {atacante.Nome} fez um ataque crítico!");
+            atk = resultadoDado + atacante.AtaqueCritico;
         }
         else
         {
-            atk = resultadoDado + p1.Ataque;
+            atk = resultadoDado + atacante.Ataque;
         }
 
-        atk -= p2.Armadura;
+        atk -= oponente.Armadura;
 
         if (atk <= 0)
         {
-            Console.WriteLine($"{p1.Nome} errou o golpe.");
+            Console.WriteLine($"{atacante.Nome} errou o golpe.");
             return;
         }
 
-        p2.Vida -= atk;
+        oponente.Vida -= atk;
 
-        Console.WriteLine($"{p1.Nome} atacou {p2.Nome} com sucesso. {p2.Nome} recebeu {atk} de dano.");
+        Console.WriteLine($"{atacante.Nome} atacou {oponente.Nome} com sucesso. {oponente.Nome} recebeu {atk} de dano.");
     }
 
-    
 };
