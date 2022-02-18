@@ -1,5 +1,4 @@
 ﻿
-
 var heroi = new Personagem{
     Nome = "Link",
     Vida = 100,
@@ -52,7 +51,7 @@ void Armadilha(Personagem heroi){
 void SimpleSword(Personagem heroi){
 
     heroi.Ataque = heroi.Ataque + 1;
-    Console.WriteLine($"{heroi.Nome} encontrou uma espada simples, recebendo mais 3 pontos de ataque.");
+    Console.WriteLine($"{heroi.Nome} encontrou uma espada simples, recebendo mais 1 pontos de ataque.");
 
 }
 
@@ -67,7 +66,7 @@ void GerudosSword(Personagem heroi){
 void MasterSword(Personagem heroi){
 
     heroi.Ataque = heroi.Ataque + 7;
-    Console.WriteLine($"{heroi.Nome} encontrou a Master Sword, recebendo mais 3 pontos de ataque.");
+    Console.WriteLine($"{heroi.Nome} encontrou a Master Sword, recebendo mais 7 pontos de ataque.");
 
 }
 
@@ -81,14 +80,21 @@ void SimpleShield(Personagem heroi){
 void GerudosShield(Personagem heroi){
 
     heroi.Armadura = heroi.Armadura + 3;
-    Console.WriteLine($"{heroi.Nome} encontrou um escudo simples, recebendo mais 3 pontos de armadura.");
+    Console.WriteLine($"{heroi.Nome} encontrou um escudo de Gerudo, recebendo mais 3 pontos de armadura.");
 
 }
 
 void HyrulianShield(Personagem heroi){
 
     heroi.Armadura = heroi.Armadura + 7;
-    Console.WriteLine($"{heroi.Nome} encontrou o Hyrulian Shield, recebendo mais 3 pontos de armadura.");
+    Console.WriteLine($"{heroi.Nome} encontrou o Hyrulian Shield, recebendo mais 7 pontos de armadura.");
+
+}
+
+void Helmet(Personagem heroi){
+
+    heroi.Armadura = heroi.Armadura + 2;
+    Console.WriteLine($"{heroi.Nome} encontrou um elmo, recebendo mais 2 pontos de armadura.");
 
 }
 
