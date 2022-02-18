@@ -1,43 +1,6 @@
-﻿
-class FlowEngine
+﻿class FlowEngine
 {
-    public void Caminho(int fluxo)
-    {
-
-        void Direita()
-        {
-            Console.WriteLine("Voce escolheu ir para a direita");
-        }
-        void Esquerda()
-        {
-            Console.WriteLine("Voce escolheu ir para a esquerda");
-        }
-        void FlorestaMaligna()
-        {
-            Console.WriteLine("Voce escolheu ir pra floresta maligna");
-        }
-        void MarBaltico()
-        {
-            Console.WriteLine("Voce escolheu ir pra o Mar Baltico");
-        }
-        switch (fluxo)
-        {
-            case 0:
-                Esquerda();
-                break;
-            case 1:
-                Direita();
-                break;
-            case 2:
-                FlorestaMaligna();
-                break;
-            case 3:
-                MarBaltico();
-                break;
-        }
-    }
     public void Fluxo(Personagem heroi)
-
     {
         Console.WriteLine($"Bem vindo Ao jogo {heroi.Nome}");
         Historia();
@@ -65,6 +28,7 @@ class FlowEngine
                 inputValido2 = true;
             }
         } while (!inputValido2);
+
         Caminho(decisao);
     }
     void Historia()
@@ -72,4 +36,41 @@ class FlowEngine
         Console.WriteLine("Voce se encontra escoltando uma carroca, de um lugar A a um lugar B. ");
         Console.WriteLine("Proximo ao meio-dia goblins cercam sua carroca!.");
     }
+    public void Caminho(int fluxo)
+    {
+
+        void Direita()
+        {
+            Console.WriteLine("Voce escolheu ir para a direita");
+        }
+        void Esquerda()
+        {
+            Console.WriteLine("Voce escolheu ir para a esquerda");
+        }
+        void FlorestaMaligna()
+        {
+            Console.WriteLine("Voce escolheu ir pra floresta maligna");
+        }
+        void MarBaltico()
+        {
+            Console.WriteLine("Voce escolheu ir pra o Mar Baltico");
+        }
+        
+        switch (fluxo)
+        {
+            case 0:
+                Esquerda();
+                break;
+            case 1:
+                Direita();
+                break;
+            case 2:
+                FlorestaMaligna();
+                break;
+            case 3:
+                MarBaltico();
+                break;
+        }
+    }
+    
 }
