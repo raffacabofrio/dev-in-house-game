@@ -15,18 +15,41 @@ var goblim = new Personagem{
 };
 
 
-// tomou um hit
-var dano = 15;
-heroi.Vida = heroi.Vida - dano;
 
+Fluxo(heroi);
+void Fluxo(Personagem heroi)
 
-Console.WriteLine($"Olá {heroi.Nome}, você tem {heroi.Vida} de vida.");
+{
+    Console.WriteLine($"Bem vindo Ao jogo {heroi.Nome}");
+    Console.ReadKey();
+        // 1 esquerda
+        // 0 direita
+        var decisao = 3; 
+        bool inputValido2 = false;
+        do 
+        {
+            Console.WriteLine($"O que voce deseja fazer: {heroi.Nome}");
+            Console.WriteLine("Suas opcoes sao ir para esquerda[1] e direita[0]");
+            var result = Int32.TryParse(Console.ReadLine(), out decisao);
+            if(!inputValido2 && decisao > 1 ){
+                Console.WriteLine("Voce nao  digitou uma opcao valida!!, Digite novamente");
+            }    
+            else {
+                inputValido2 = true;
+            }
+        }while(!inputValido2);
 
+        
+        if(decisao == 1) {
+            Console.WriteLine("Voce escolheu ir para a esquerda");
+        }
+        else if(decisao == 0){
+            Console.WriteLine("Voce escolheu ir para a direita");
 
-// ganhou uma poção de cura
-heroi.Vida = heroi.Vida + 50;
+        }
+    }
+    // Console.ReadKey();
 
-Console.WriteLine($"Olá {heroi.Nome}, você tem {heroi.Vida} de vida.");
 
 
 public class Personagem {
@@ -36,3 +59,4 @@ public class Personagem {
     public int Armadura { get; set; }
 
 }
+
