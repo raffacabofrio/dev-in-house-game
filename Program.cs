@@ -1,4 +1,5 @@
-﻿var heroi = new Personagem{
+var heroi = new Personagem
+{
     Nome = "Link",
     Vida = 100,
     Armadura = 5,
@@ -14,6 +15,8 @@ var goblim = new Personagem{
     AtaqueCritico = 2,
 };
 
+var fluxo = new FlowEngine();
+fluxo.Fluxo(heroi);
 
 
 
