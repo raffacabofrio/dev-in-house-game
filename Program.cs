@@ -1,4 +1,8 @@
-﻿
+﻿// Exemplo arquivo separado
+var teste = new Teste();
+teste.Teste2();
+
+
 var heroi = new Personagem{
     Nome = "Link",
     Vida = 100,
@@ -6,8 +10,6 @@ var heroi = new Personagem{
     Ataque = 5,
 };
 
-var teste = new Teste();
-teste.Teste2();
 
 var goblim = new Personagem{
     Nome = "Goblim",
