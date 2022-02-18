@@ -1,6 +1,23 @@
 public class BattleEngine
 {
-    public void ataque(Personagem p1, Personagem p2)
+
+    public void Turno(Personagem p1, Personagem p2)
+    {
+        Ataque(p1, p2);
+        if (p2.Vida <= 0)
+        {
+            Console.WriteLine($"{p2.Nome} morreu!");
+            return;
+        }
+
+        Ataque(p2, p1);
+        if (p1.Vida <= 0)
+        {
+            Console.WriteLine($"{p1.Nome} morreu!");
+            return;
+        }
+    }
+    public void Ataque(Personagem p1, Personagem p2)
     {
         int vidaInicialp2 = p2.Vida;
 
@@ -34,20 +51,5 @@ public class BattleEngine
         Console.WriteLine($"{p1.Nome} atacou {p2.Nome} com sucesso. {p2.Nome} recebeu {atk} de dano.");
     }
 
-    public void turno(Personagem p1, Personagem p2)
-    {
-        ataque(p1, p2);
-        if (p2.Vida <= 0)
-        {
-            Console.WriteLine($"{p2.Nome} morreu!");
-            return;
-        }
-
-        ataque(p2, p1);
-        if (p1.Vida <= 0)
-        {
-            Console.WriteLine($"{p1.Nome} morreu!");
-            return;
-        }
-    }
+    
 };

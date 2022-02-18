@@ -7,8 +7,6 @@
     AtaqueCritico = 10,
 };
 
-
-
 var fluxo = new FlowEngine();
 fluxo.Fluxo(heroi);
 

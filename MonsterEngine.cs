@@ -1,4 +1,4 @@
-class MonsterEngine {
+public class MonsterEngine {
 
     public Personagem Goblin() {
         var goblin = new Personagem{
