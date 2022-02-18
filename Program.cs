@@ -36,8 +36,8 @@ void Maca(Personagem heroi){
 
 void PocaodeCura(Personagem heroi){
     
-    heroi.Vida = heroi.Vida + 50;
-    Console.WriteLine($"{heroi.Nome} consome uma poção de cura, restaurando 50 pontos de vida. Vida autal: {heroi.Vida}");
+    heroi.Vida = heroi.Vida + 30;
+    Console.WriteLine($"{heroi.Nome} consome uma poção de cura, restaurando 30 pontos de vida. Vida autal: {heroi.Vida}");
 
 }
 
