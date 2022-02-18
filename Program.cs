@@ -19,19 +19,6 @@ var goblim = new Personagem{
 };
 
 
-// tomou um hit
-var dano = 15;
-heroi.Vida = heroi.Vida - dano;
-
-
-Console.WriteLine($"Olá {heroi.Nome}, você tem {heroi.Vida} de vida.");
-
-
-// ganhou uma poção de cura
-
-
-Console.WriteLine($"Olá {heroi.Nome}, você tem {heroi.Vida} de vida.");
-
 void Maca(Personagem heroi){
     
     heroi.Vida = heroi.Vida + 5;
@@ -106,9 +93,9 @@ void Helmet(Personagem heroi){
 
 
 public class Personagem {
-    public string Nome { get; set; }
-    public int Vida { get; set; }
-    public int Ataque { get; set; }
-    public int Armadura { get; set; }
+    public string Nome { get; set; } = "Sem nome";
+    public int Vida { get; set; } = 10;
+    public int Ataque { get; set; } = 0;
+    public int Armadura { get; set; } = 0;
 
 }
