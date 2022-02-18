@@ -40,6 +40,7 @@ class FlowEngine
 
     {
         Console.WriteLine($"Bem vindo Ao jogo {heroi.Nome}");
+        Historia();
         Console.ReadKey();
         var decisao = 3;
         bool inputValido2 = false;
@@ -65,5 +66,10 @@ class FlowEngine
             }
         } while (!inputValido2);
         Caminho(decisao);
+    }
+    void Historia()
+    {
+        Console.WriteLine("Voce se encontra escoltando uma carroca, de um lugar A a um lugar B. ");
+        Console.WriteLine("Proximo ao meio-dia goblins cercam sua carroca!.");
     }
 }
