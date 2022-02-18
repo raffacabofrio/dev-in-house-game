@@ -52,8 +52,6 @@ void Caminho(int fluxo)
             break;
     }
 }
-
-Fluxo(heroi);
 void Fluxo(Personagem heroi)
 
 {
@@ -72,8 +70,8 @@ void Fluxo(Personagem heroi)
             Console.WriteLine($"{opcoes} [{x}]");
             x++;
         }
-        var result = Int32.TryParse(Console.ReadLine(), out decisao);
-        if (!inputValido2 && decisao > caminhos.Count)
+        var NumeroValido = Int32.TryParse(Console.ReadLine(), out decisao);
+        if (!NumeroValido || decisao >= caminhos.Count)
         {
             Console.WriteLine("Voce nao  digitou uma opcao valida!!, Digite novamente");
         }
@@ -84,7 +82,7 @@ void Fluxo(Personagem heroi)
     } while (!inputValido2);
     Caminho(decisao);
 }
-
+Fluxo(heroi);
 
 
 public class Personagem
