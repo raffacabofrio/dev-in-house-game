@@ -1,4 +1,4 @@
-public class Battle
+public class BattleEngine
 {
     public void ataque(Personagem p1, Personagem p2)
     {
