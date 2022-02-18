@@ -6,6 +6,9 @@ var heroi = new Personagem{
     Ataque = 5,
 };
 
+var teste = new Teste();
+teste.Teste2();
+
 var goblim = new Personagem{
     Nome = "Goblim",
     Vida = 10,
