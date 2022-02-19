@@ -2,6 +2,7 @@ public class BattleEngine
 {
     public void Turno(Personagem p1, Personagem p2)
     {
+        var contadorTurno = 1;
         do{
             Thread.Sleep(900);
             Ataque(p1, p2);
@@ -19,7 +20,8 @@ public class BattleEngine
                 return;
             }
             
-            Console.WriteLine("O turno acabou!");
+            Console.WriteLine($"O turno {contadorTurno} acabou!");
+            contadorTurno++;
             Thread.Sleep(500);
             Console.WriteLine("Pressione 'Enter' para rodar o dado...");
             Console.ReadKey();

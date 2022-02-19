@@ -4,33 +4,61 @@
     {
         var batalha = new BattleEngine();
         var monstro = new MonsterEngine();
+        var item = new ItemEngine();
+        var inimigo = monstro.Goblin();
 
         Console.WriteLine("Qual e o seu nome heroi ? ");
         var nome = Console.ReadLine();
         var heroi = new Personagem
         {
             Nome = nome,
-            Vida = 100,
+            Vida = 50,
             Armadura = 5,
             Ataque = 5,
             AtaqueCritico = 10,
         };
 
-        Console.WriteLine(@"Na cidade de Neverwinter um anão chamado Gundren
-                            Buscapedra tenta lhe contratar para escoltar uma carroça de
-                            suprimentos, até a vila sem lei de Phandalin, que fica
-                            há dois dias e viagem a sudeste da cidade. Voce aceitara* o contrato? " );
+        Console.WriteLine(@"Na cidade de Gerudo um anão chamado Gundren tenta lhe contratar para escoltar uma carroça de suprimentos até a vila sem lei de Phandalin,
+        que fica há dois dias e viagem a sudeste da cidade. Voce aceitará o contrato?" );
                             
 
-        var caminho = Fluxo(heroi,"sim","nao"); 
+        var caminho = Fluxo(heroi,"Sim","Não"); 
         if(caminho == 1) {
-            Console.WriteLine("Grunden na verdade era Ganon e quando voce vira as costas ele te ataca");   
+            Console.WriteLine("Descontente com sua resposta, Grunden , que na verdade é Ganon, te ataca pelas costas!!");   
             batalha.Turno(monstro.Ganon(), heroi);
             if(heroi.Vida <= 0) {
                 GameOver($"Voce foi morto pelo {monstro.Ganon().Nome}");
             }
-        }                  
+        }      
 
+        ContarHistoria(@$"Gundren fica bem animado por {heroi.Nome} ter aceito o contrato e começa a contar sobre a viagem,dizendo apenas que ele e seus irmãos haviam encontrado “algo grande”, e vai pagar dez peças de ouro a você para escoltar os suprimentos em segurança até a Barthen Provisões, um posto de troca em Phandalin." );
+
+        ContarHistoria(@$"A jornada o leva ao sul pela Estrada Alta até a Trilha Triboar, que fica ao leste. Perto do meio dia , vocês são emboscados por goblins saqueadores da tribo Dentefi ." );
+
+        Console.WriteLine($"O que {heroi.Nome} fará: ");
+
+        caminho = Fluxo(heroi,"Lutar","Correr"); 
+
+        if(caminho == 1) {
+            Console.WriteLine("Descontente com sua resposta, Grunden , que na verdade é Ganon, te ataca pelas costas!!");   
+            batalha.Turno(monstro.Ganon(), heroi);
+            if(heroi.Vida <= 0) {
+                GameOver($"Voce foi morto pelo {monstro.Ganon().Nome}");
+            }
+        }
+
+        inimigo = monstro.Goblin();
+        batalha.Turno(heroi, inimigo);
+        if(heroi.Vida <= 0) {
+            GameOver($"Voce foi morto pelo {inimigo.Nome}");
+        }
+        
+        Console.WriteLine($"Após saquear o corpo de {inimigo.Nome} ");
+        item.SimpleSword(heroi);
+
+        Console.WriteLine($"Após a batalha, {heroi.Nome} e Grunden chegam em segurança até a Barthen Provisões");
+        Console.WriteLine($"{heroi.Nome} recebe 10 moedas de ouro.");
+        Console.WriteLine("Continua ...");
     }
     public int Fluxo(Personagem heroi, string opcao_1, string opcao_2 )
     {
@@ -63,7 +91,14 @@
         
     }
     
-   
+   public void ContarHistoria(string historia){
+       historia = historia.Replace("  " , " ");
+       // historia = historia.Replace("\n" , "");
+       Console.WriteLine(historia);
+       Console.WriteLine("Pressione enter para continuar");
+       Console.ReadKey();
+
+   }
     public void GameOver(string mensagem) {
         Console.WriteLine(mensagem);
         Environment.Exit(0);
