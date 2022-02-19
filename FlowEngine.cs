@@ -4,13 +4,15 @@
     {
         var batalha = new BattleEngine();
         var monstro = new MonsterEngine();
+        var item = new ItemEngine();
+        var inimigo = monstro.Goblin();
 
         Console.WriteLine("Qual e o seu nome heroi ? ");
         var nome = Console.ReadLine();
         var heroi = new Personagem
         {
             Nome = nome,
-            Vida = 100,
+            Vida = 50,
             Armadura = 5,
             Ataque = 5,
             AtaqueCritico = 10,
@@ -44,7 +46,19 @@
                 GameOver($"Voce foi morto pelo {monstro.Ganon().Nome}");
             }
         }
-                          
+
+        inimigo = monstro.Goblin();
+        batalha.Turno(heroi, inimigo);
+        if(heroi.Vida <= 0) {
+            GameOver($"Voce foi morto pelo {inimigo.Nome}");
+        }
+        
+        Console.WriteLine($"Após saquear o corpo de {inimigo.Nome} ");
+        item.SimpleSword(heroi);
+
+        Console.WriteLine($"Após a batalha, {heroi.Nome} e Grunden chegam em segurança até a Barthen Provisões");
+        Console.WriteLine($"{heroi.Nome} recebe 10 moedas de ouro.");
+        Console.WriteLine("Continua ...");
     }
     public int Fluxo(Personagem heroi, string opcao_1, string opcao_2 )
     {
