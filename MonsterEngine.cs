@@ -32,6 +32,48 @@ public Personagem Lobo() {
         };
         return lobo;
     }
+
+    public Personagem Banshee() {
+        var banshee = new Personagem{
+        Nome = "Banshee",
+        Vida = 58,
+        Armadura =   12,
+        Ataque = 4,
+        AtaqueCritico = 8,
+        };
+        return banshee;
+    }
+
+    public Personagem Bugbear() {
+        var bugbear = new Personagem{
+        Nome = "Bugbear",
+        Vida = 27,
+        Armadura =   16,
+        Ataque = 4,
+        AtaqueCritico = 8,
+        };
+        return bugbear;
+    }
+    public Personagem DragaoVerde() {
+        var dragaoVerde = new Personagem{
+        Nome = "Dragao Verde",
+        Vida = 207,
+        Armadura = 19,
+        Ataque = 11,
+        AtaqueCritico = 22,
+        };
+        return dragaoVerde;
+    }
+     public Personagem Esqueleto() {
+        var Esqueleto = new Personagem{
+        Nome = "Esqueleto",
+        Vida = 13,
+        Armadura = 13,
+        Ataque = 4,
+        AtaqueCritico = 8,
+        };
+        return Esqueleto;
+    }
 public Personagem Ganon() {
         var ganon = new Personagem{
         Nome = "Ganon",
