@@ -1,14 +1,19 @@
 public class BattleEngine
 {
+    private BattleStoryTeller BattleStoryTeller = new();
+
     public void Turno(Personagem p1, Personagem p2)
     {
         var contadorTurno = 1;
         do{
+            Console.WriteLine("Pressione 'Enter' para rodar o dado...");
+            Console.ReadKey();
+
             Thread.Sleep(900);
             Ataque(p1, p2);
             if (p2.Vida <= 0)
             {
-                Console.WriteLine($"{p2.Nome} morreu!");
+                BattleStoryTeller.Speak($"{p2.Nome} morreu!");
                 return;
             }
 
@@ -16,16 +21,14 @@ public class BattleEngine
             Ataque(p2, p1);
             if (p1.Vida <= 0)
             {
-                Console.WriteLine($"{p1.Nome} morreu!");
+                BattleStoryTeller.Speak($"{p1.Nome} morreu!");
                 return;
             }
             
-            Console.WriteLine($"O turno {contadorTurno} acabou!");
+            BattleStoryTeller.Speak($"O turno {contadorTurno} acabou!");
             contadorTurno++;
             Thread.Sleep(500);
-            Console.WriteLine("Pressione 'Enter' para rodar o dado...");
-            Console.ReadKey();
-
+          
         } while (p1.Vida > 0 && p2.Vida > 0 );
     }
     public void Ataque(Personagem atacante, Personagem oponente)
@@ -35,14 +38,14 @@ public class BattleEngine
         int resultadoDado = number.Next(11);
         int maxDuracao = 3;
 
-        Console.WriteLine($"Resultado do dado: {resultadoDado}");
+       BattleStoryTeller.Speak($"Resultado do dado: {resultadoDado}");
         Thread.Sleep(maxDuracao * resultadoDado * 100);
 
         int atk;
 
         if (resultadoDado == 10)
         {
-            Console.WriteLine($"Wow, {atacante.Nome} fez um ataque crítico!");
+           BattleStoryTeller.Speak($"Wow, {atacante.Nome} fez um ataque crítico!");
             atk = resultadoDado + atacante.AtaqueCritico;
         }
         else
@@ -54,13 +57,13 @@ public class BattleEngine
 
         if (atk <= 0)
         {
-            Console.WriteLine($"{atacante.Nome} errou o golpe.");
+           BattleStoryTeller.Speak($"{atacante.Nome} errou o golpe.");
             return;
         }
 
         oponente.Vida -= atk;
 
-        Console.WriteLine($"{atacante.Nome} atacou {oponente.Nome} com sucesso. {oponente.Nome} recebeu {atk} de dano.");
+        BattleStoryTeller.Speak($"{atacante.Nome} atacou {oponente.Nome} com sucesso. {oponente.Nome} recebeu {atk} de dano.");
     }
 
 };
