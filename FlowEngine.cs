@@ -7,7 +7,7 @@
         var item = new ItemEngine();
         var inimigo = monstro.Goblin();
 
-        Console.WriteLine("Qual e o seu nome heroi ? ");
+        GameStoryTeller.Speak("Qual e o seu nome heroi ? ");
         var nome = Console.ReadLine();
         var heroi = new Personagem
         {
@@ -18,29 +18,31 @@
             AtaqueCritico = 10,
         };
 
-        Console.WriteLine(@"Na cidade de Gerudo um anão chamado Gundren tenta lhe contratar para escoltar uma carroça de suprimentos até a vila sem lei de Phandalin,
-        que fica há dois dias e viagem a sudeste da cidade. Voce aceitará o contrato?" );
+        FlowStoryTeller.Speak(@"Na cidade de Gerudo um anão chamado Gundren tenta lhe contratar para escoltar uma carroça de suprimentos até a vila sem lei de Phandalin,
+        que fica há dois dias e viagem a sudeste da cidade." );
+                            
+        GameStoryTeller.Speak("Voce aceitará o contrato?" );
                             
 
         var caminho = Fluxo(heroi,"Sim","Não"); 
         if(caminho == 1) {
-            Console.WriteLine("Descontente com sua resposta, Grunden , que na verdade é Ganon, te ataca pelas costas!!");   
+            FlowStoryTeller.Speak("Descontente com sua resposta, Grunden , que na verdade é Ganon, te ataca pelas costas!!");   
             batalha.Turno(monstro.Ganon(), heroi);
             if(heroi.Vida <= 0) {
                 GameOver($"Voce foi morto pelo {monstro.Ganon().Nome}");
             }
         }      
-
         ContarHistoria(@$"Gundren fica bem animado por {heroi.Nome} ter aceito o contrato e começa a contar sobre a viagem,dizendo apenas que ele e seus irmãos haviam encontrado “algo grande”, e vai pagar dez peças de ouro a você para escoltar os suprimentos em segurança até a Barthen Provisões, um posto de troca em Phandalin." );
 
         ContarHistoria(@$"A jornada o leva ao sul pela Estrada Alta até a Trilha Triboar, que fica ao leste. Perto do meio dia , vocês são emboscados por goblins saqueadores da tribo Dentefi ." );
 
-        Console.WriteLine($"O que {heroi.Nome} fará: ");
+        
+        GameStoryTeller.Speak($"O que {heroi.Nome} fará: ");
 
         caminho = Fluxo(heroi,"Lutar","Correr"); 
 
         if(caminho == 1) {
-            Console.WriteLine("Descontente com sua resposta, Grunden , que na verdade é Ganon, te ataca pelas costas!!");   
+            FlowStoryTeller.Speak("Descontente com sua resposta, Grunden , que na verdade é Ganon, te ataca pelas costas!!");   
             batalha.Turno(monstro.Ganon(), heroi);
             if(heroi.Vida <= 0) {
                 GameOver($"Voce foi morto pelo {monstro.Ganon().Nome}");
