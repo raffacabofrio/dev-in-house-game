@@ -2,7 +2,7 @@ public class StoryTeller{
     public string Narrador;
     public ConsoleColor BackgroundColor;
     public ConsoleColor ForegroundColor;
-    public readonly int time = 2000;
+    public readonly int time = 500;
     public StoryTeller(ConsoleColor backgroundColor, ConsoleColor foregroundColor, string narrador)
     {
         BackgroundColor = backgroundColor;
@@ -18,6 +18,9 @@ public class StoryTeller{
         Build();
         Console.WriteLine(Narrador + texto);
         Destroy();
+
+        Thread.Sleep(time);
+        
     }
     public void Build(){
         Console.BackgroundColor = BackgroundColor;
