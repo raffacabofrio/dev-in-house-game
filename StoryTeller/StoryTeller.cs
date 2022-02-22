@@ -1,39 +1,50 @@
-public class BattleStoryTeller {
-    private static readonly ConsoleColor BackgroundColor = ConsoleColor.Black; 
-    private static readonly ConsoleColor ForegroundColor  = ConsoleColor.Red; 
-    private static readonly string Narrador = "[Batalha]: ";
-    public static void Speak(string texto, int time = 1000){
-        Console.BackgroundColor = BackgroundColor;
-        Console.ForegroundColor = ForegroundColor;
-        Console.WriteLine(Narrador + texto);
+public class StoryTeller{
+    public string Narrador;
+    public ConsoleColor BackgroundColor;
+    public ConsoleColor ForegroundColor;
+    public readonly int time = 500;
+    public StoryTeller(ConsoleColor backgroundColor, ConsoleColor foregroundColor, string narrador)
+    {
+        BackgroundColor = backgroundColor;
+        ForegroundColor = foregroundColor;
+        Narrador = narrador;
+    }
+
+    public void Speak(string texto)
+    {
+
         Thread.Sleep(time);
-    Console.ForegroundColor  = ConsoleColor.White; 
+        
+        Build();
+        Console.WriteLine(Narrador + texto);
+        Destroy();
+
+        Thread.Sleep(time);
         
     }
+    public void Build(){
+        Console.BackgroundColor = BackgroundColor;
+        Console.ForegroundColor = ForegroundColor;
+    }
+    public void Destroy()
+    {
+        Console.BackgroundColor = ConsoleColor.Black;
+        Console.ForegroundColor = ConsoleColor.White;
+    }
+
 }
-public class FlowStoryTeller {
-    private static readonly ConsoleColor BackgroundColor = ConsoleColor.Black; 
-    private static readonly ConsoleColor ForegroundColor  = ConsoleColor.Yellow; 
-    private static readonly string Narrador = "[Narrador]: ";
-    public static void Speak(string texto, int time = 1000){
-        Console.BackgroundColor = BackgroundColor;
-        Console.ForegroundColor = ForegroundColor;
-        Console.WriteLine(Narrador + texto);
-        Thread.Sleep(time);
-    Console.ForegroundColor  = ConsoleColor.White; 
-        
-    }
+public class BattleStoryTeller : StoryTeller
+{
+    public BattleStoryTeller() : base(ConsoleColor.Black, ConsoleColor.Red, "[Batalha]: ") { }
+
 }
-public class GameStoryTeller {
-    private static readonly ConsoleColor BackgroundColor = ConsoleColor.Black; 
-    private static readonly ConsoleColor ForegroundColor  = ConsoleColor.Blue; 
-    private static readonly string Narrador = "[Game]: ";
-    public static void Speak(string texto, int time = 1000){
-        Console.BackgroundColor = BackgroundColor;
-        Console.ForegroundColor = ForegroundColor;
-        Console.WriteLine(Narrador + texto);
-        Thread.Sleep(time);
-    Console.ForegroundColor  = ConsoleColor.White; 
-        
-    }
+public class FlowStoryTeller : StoryTeller
+{
+    public FlowStoryTeller() : base(ConsoleColor.Black, ConsoleColor.Yellow, "[Narrador]: ") { }
+
+}
+public class GameStoryTeller : StoryTeller
+{
+    public GameStoryTeller() : base(ConsoleColor.Black, ConsoleColor.Blue, "[Game]: ") { }
+
 }
