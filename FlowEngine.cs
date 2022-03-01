@@ -1,7 +1,5 @@
 ﻿class FlowEngine
-{ 
-    private GameStoryTeller GameStoryTeller = new();
-    private FlowStoryTeller FlowStoryTeller = new();
+{
 
     public void Historia()
     {

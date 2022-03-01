@@ -11,7 +11,6 @@ public class ItemEngine {
         
         heroi.Vida = heroi.Vida + 30;
         Mensagem($"{heroi.Nome} consome uma poção de cura, restaurando 30 pontos de vida. Vida autal: {heroi.Vida}");
-        
 
     }
 
