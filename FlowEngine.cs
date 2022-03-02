@@ -8,7 +8,9 @@
         var item = new ItemEngine();
         var inimigo = monstro.Goblin();
 
-        GameStoryTeller.Speak("Qual e o seu nome heroi ? ");
+        var storyTeller = new GameStoryTeller();
+
+        storyTeller.Speak("Qual e o seu nome heroi ? ");
         var nome = Console.ReadLine();
         var heroi = new Personagem
         {
@@ -19,15 +21,15 @@
             AtaqueCritico = 10,
         };
 
-        FlowStoryTeller.Speak(@"Na cidade de Gerudo um anão chamado Gundren tenta lhe contratar para escoltar uma carroça de suprimentos até a vila sem lei de Phandalin,
+        storyTeller.Speak(@"Na cidade de Gerudo um anão chamado Gundren tenta lhe contratar para escoltar uma carroça de suprimentos até a vila sem lei de Phandalin,
         que fica há dois dias e viagem a sudeste da cidade." );
-                            
-        GameStoryTeller.Speak("Voce aceitará o contrato?" );
+
+        storyTeller.Speak("Voce aceitará o contrato?" );
                             
 
         var caminho = Fluxo(heroi,"Sim","Não"); 
         if(caminho == 1) {
-            FlowStoryTeller.Speak("Descontente com sua resposta, Grunden , que na verdade é Ganon, te ataca pelas costas!!");   
+            storyTeller.Speak("Descontente com sua resposta, Grunden , que na verdade é Ganon, te ataca pelas costas!!");   
             batalha.Turno(monstro.Ganon(), heroi);
             if(heroi.Vida <= 0) {
                 GameOver($"Voce foi morto pelo {monstro.Ganon().Nome}");
@@ -37,13 +39,13 @@
 
         ContarHistoria(@$"A jornada o leva ao sul pela Estrada Alta até a Trilha Triboar, que fica ao leste. Perto do meio dia , vocês são emboscados por goblins saqueadores da tribo Dentefi ." );
 
-        
-        GameStoryTeller.Speak($"O que {heroi.Nome} fará: ");
+
+        storyTeller.Speak($"O que {heroi.Nome} fará: ");
 
         caminho = Fluxo(heroi,"Lutar","Correr"); 
 
         if(caminho == 1) {
-            FlowStoryTeller.Speak("Descontente com sua resposta, Grunden , que na verdade é Ganon, te ataca pelas costas!!");   
+            storyTeller.Speak("Descontente com sua resposta, Grunden , que na verdade é Ganon, te ataca pelas costas!!");   
             batalha.Turno(monstro.Ganon(), heroi);
             if(heroi.Vida <= 0) {
                 GameOver($"Voce foi morto pelo {monstro.Ganon().Nome}");
