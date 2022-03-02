@@ -1,9 +1,15 @@
 ﻿class FlowEngine
 {
+    private BattleEngine batalha;
+
+    public FlowEngine()
+    {
+        batalha = new BattleEngine();
+    }
 
     public void Historia()
     {
-        var batalha = new BattleEngine();
+        
         var monstro = new MonsterEngine();
         var item = new ItemEngine();
         var inimigo = monstro.Goblin();
