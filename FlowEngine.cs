@@ -1,20 +1,22 @@
 ﻿class FlowEngine
 {
-    private BattleEngine batalha;
-    private MonsterEngine monstro;
-    private ItemEngine item;
 
+    private BattleEngine batalha;
+
+    private MonsterEngine monster;
+
+    private ItemEngine item;
+   
     public FlowEngine()
     {
-        batalha = new BattleEngine();
-        monstro = new MonsterEngine();
-        item = new ItemEngine();
-    
+       
     }
 
     public void Historia()
     {
-
+        
+        
+      
         var storyTeller = new GameStoryTeller();
 
         storyTeller.Speak("Qual e o seu nome heroi ? ");
@@ -59,11 +61,13 @@
             
         }
 
-//        inimigo = monstro.Goblin();
+
+        
         batalha.Turno(heroi, monstro.Goblin());
-        if(heroi.Vida <= 0) GameOver($"Voce foi morto pelo {monstro.Goblin().Nome}");
-        
-        
+        if(heroi.Vida <= 0) {
+            GameOver($"Voce foi morto pelo {monstro.Goblin().Nome}");
+        }
+    
         Console.WriteLine($"Após saquear o corpo de {monstro.Goblin().Nome} ");
         item.SimpleSword(heroi);
 
