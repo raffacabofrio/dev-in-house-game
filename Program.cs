@@ -3,6 +3,11 @@
 var fluxo = new FlowEngine();
 fluxo.Historia();
 
+// to do.. criar uma classe para itens de cenario, EXEMPLO: ARMADILHAS
+
+
+
+
 
 // Exemplo leitura de CSV
 //var aventuras = new List<Aventura>();
