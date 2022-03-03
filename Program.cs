@@ -47,3 +47,4 @@ public class Aventura
 
 var itemEngine = new ItemEngine();
 itemEngine.PegaItem("Maca");
+//Console.WriteLine(item);

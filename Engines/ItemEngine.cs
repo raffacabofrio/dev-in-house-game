@@ -1,7 +1,7 @@
 public class ItemEngine
 {
-    private List<string> _itensLista = new List<string>();
-    
+    private List<List<string>> _itensLista = new List<List<string>>();
+
     public ItemEngine()
     {
         CarregarItens();
@@ -92,39 +92,26 @@ public class ItemEngine
         Console.WriteLine("Pressione 'Entrer' para continuar...");
         Console.ReadKey();
     }
-    /* public void Exemplo(Personagem heroi, string item)
-     {
-         Item sword = new Item(item, "encontrou uma espada simples, recebendo mais 1 pontos de ataque", 5);
-         //heroi[]
-
-     }*/
-    /*public void Ler()
-    {
-        var pathCsv = Directory.GetCurrentDirectory() + "/Itens/Lista1.csv";
-        var lines = File.ReadAllLines(pathCsv);
-
-        foreach (var line in lines)
-        {
-
-            var colunas = line.Split(";");
-
-        }
-    }*/
     public void PegaItem(string item)
     {
-        //int tamanho =Convert.ToInt32( _itensLista[_itensLista.Count-1]);
-        //var objetoItem = _itensLista.Where(itemNome => itemNome == item);
-        /*for (var i = 0;  i <= _itensLista.Count; i++)
+        // modificar isso para usar com o linq
+        foreach (var line in _itensLista)
         {
-            Console.WriteLine(_itensLista[6]);
-        }*/
+            //Console.WriteLine(line[1]);
+            if (line[1].Trim() == item)
+            {
+                Item itemDesejado = new Item(int.Parse(line[0]), line[1], line[2], line[3], int.Parse(line[4]), line[5]);
+                Console.WriteLine(itemDesejado["Nome"]);
+            }
+        }
+        //throw new Exception("O Item desejado nao existe no arquivo");
 
     }
     public void CarregarItens()
     {
         Console.WriteLine("Carregando arquivos!");
-        Arquivo arquivoReader =  new Arquivo("./Itens/TextTemplate1.csv");
-        _itensLista =  arquivoReader.LerArquivo();
+        Arquivo arquivoReader = new Arquivo("./Itens/TextTemplate1.csv");
+        _itensLista = arquivoReader.LerArquivo();
     }
 }
 

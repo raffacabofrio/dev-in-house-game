@@ -5,4 +5,5 @@ public class Personagem
     public int Ataque { get; set; }
     public int Armadura { get; set; }
     public int AtaqueCritico { get; set; }
+
 }
