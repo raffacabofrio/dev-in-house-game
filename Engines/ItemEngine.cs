@@ -1,109 +1,156 @@
 public class ItemEngine
 {
+    private List<List<string>> _itensLista = new List<List<string>>();
+    private StoryTeller _storyTeller = new GameStoryTeller();
+    private Personagem _heroi;
 
-    public void Maca(Personagem heroi)
+   
+
+    /*Ao construir a classe ItemEngine, o metodo Carregar arquivos vai ser acionado */
+    public ItemEngine()
     {
+        CarregarItens();
+    }
 
-        heroi.Vida = heroi.Vida + 5;
-        Mensagem($"{heroi.Nome} consome uma maça, restaurando 5 pontos de vida. Vida autal: {heroi.Vida}");
+    // Seleciona o item e atribui suas propriedades ao heroi 
+    public bool PegaItem(string item)
+    {
+        // modificar isso para usar com o linq
+        foreach (var line in _itensLista)
+        {
+            if (line[1].Trim() == item)
+            {
+                Item itemDesejado = new Item(int.Parse(line[0]), line[1], line[2], line[3], int.Parse(line[4]), line[5]);
+                switch (itemDesejado.Atributo)
+                {
+                    case "ataque":
+                        _heroi.Ataque += itemDesejado.Pontos;
+                        _storyTeller.Speak($"{_heroi.Nome} {itemDesejado.Mensagem}");
+                        break;
+
+                    case "defesa":
+                        _heroi.Armadura += itemDesejado.Pontos;
+                        _storyTeller.Speak($"{_heroi.Nome} {itemDesejado.Mensagem}");
+                        break;
+
+                    case "vida":
+                        _heroi.Vida += itemDesejado.Pontos;
+                        _storyTeller.Speak($"{_heroi.Nome} {itemDesejado.Mensagem}");
+                        break;
+
+                    default:
+                        Console.WriteLine("n sei o que dizer");
+                        break;
+                }
+                return true;
+            }
+        }
+        throw new Exception("O Item desejado nao existe no arquivo");
 
     }
 
-    public void PocaodeCura(Personagem heroi)
+    // Carrega os itens do arquivo csv
+    private void CarregarItens()
     {
-
-        heroi.Vida = heroi.Vida + 30;
-        Mensagem($"{heroi.Nome} consome uma poção de cura, restaurando 30 pontos de vida. Vida autal: {heroi.Vida}");
-
+        Console.WriteLine("Carregando arquivos!");
+        Arquivo arquivoReader = new Arquivo("./Itens/TextTemplate1.csv");
+        _itensLista = arquivoReader.LerArquivo();
     }
 
-    public void Armadilha(Personagem heroi)
+    public void SelecionarHeroi(Personagem heroi)
     {
-
-        heroi.Vida = heroi.Vida - 7;
-        Mensagem($"{heroi.Nome} encontrou uma armadilha no caminho, recebendo 7 pontos de dano. Vida autal: {heroi.Vida}");
-
+        _heroi = heroi;
     }
 
-    public void SimpleSword(Personagem heroi)
-    {
 
-        heroi.Ataque = heroi.Ataque + 1;
-        Mensagem($"{heroi.Nome} encontrou uma espada simples, recebendo mais 1 pontos de ataque.");
 
-    }
+    // METODOS ANTIGOS, TALVEZ APAGAR DEPOIS
+    /*public void Maca(Personagem heroi)
+   {
 
-    public void GerudosSword(Personagem heroi)
-    {
+       heroi.Vida = heroi.Vida + 5;
+       Mensagem($"{heroi.Nome} consome uma maça, restaurando 5 pontos de vida. Vida autal: {heroi.Vida}");
 
-        heroi.Ataque = heroi.Ataque + 3;
-        Mensagem($"{heroi.Nome} encontrou uma espada flamejante, recebendo mais 3 pontos de ataque.");
+   }
 
-    }
+   public void PocaodeCura(Personagem heroi)
+   {
 
-    public void MasterSword(Personagem heroi)
-    {
+       heroi.Vida = heroi.Vida + 30;
+       Mensagem($"{heroi.Nome} consome uma poção de cura, restaurando 30 pontos de vida. Vida autal: {heroi.Vida}");
 
-        heroi.Ataque = heroi.Ataque + 7;
-        Mensagem($"{heroi.Nome} encontrou a Master Sword, recebendo mais 7 pontos de ataque.");
+   }
 
-    }
+   public void Armadilha(Personagem heroi)
+   {
 
-    public void SimpleShield(Personagem heroi)
-    {
+       heroi.Vida = heroi.Vida - 7;
+       Mensagem($"{heroi.Nome} encontrou uma armadilha no caminho, recebendo 7 pontos de dano. Vida autal: {heroi.Vida}");
 
-        heroi.Armadura = heroi.Armadura + 1;
-        Mensagem($"{heroi.Nome} encontrou um escudo simples, recebendo mais 3 pontos de armadura.");
+   }
 
-    }
+   public void SimpleSword(Personagem heroi)
+   {
 
-    public void GerudosShield(Personagem heroi)
-    {
+       heroi.Ataque = heroi.Ataque + 1;
+       Mensagem($"{heroi.Nome} encontrou uma espada simples, recebendo mais 1 pontos de ataque.");
 
-        heroi.Armadura = heroi.Armadura + 3;
-        Mensagem($"{heroi.Nome} encontrou um escudo de Gerudo, recebendo mais 3 pontos de armadura.");
+   }
 
-    }
+   public void GerudosSword(Personagem heroi)
+   {
 
-    public void HyrulianShield(Personagem heroi)
-    {
+       heroi.Ataque = heroi.Ataque + 3;
+       Mensagem($"{heroi.Nome} encontrou uma espada flamejante, recebendo mais 3 pontos de ataque.");
 
-        heroi.Armadura = heroi.Armadura + 7;
-        Mensagem($"{heroi.Nome} encontrou o Hyrulian Shield, recebendo mais 7 pontos de armadura.");
+   }
 
-    }
+   public void MasterSword(Personagem heroi)
+   {
 
-    public void Helmet(Personagem heroi)
-    {
+       heroi.Ataque = heroi.Ataque + 7;
+       Mensagem($"{heroi.Nome} encontrou a Master Sword, recebendo mais 7 pontos de ataque.");
 
-        heroi.Armadura = heroi.Armadura + 2;
-        Mensagem($"{heroi.Nome} encontrou um elmo, recebendo mais 2 pontos de armadura.");
+   }
 
-    }
+   public void SimpleShield(Personagem heroi)
+   {
 
-    public void Mensagem(String mensagem)
+       heroi.Armadura = heroi.Armadura + 1;
+       Mensagem($"{heroi.Nome} encontrou um escudo simples, recebendo mais 3 pontos de armadura.");
+
+   }
+
+   public void GerudosShield(Personagem heroi)
+   {
+
+       heroi.Armadura = heroi.Armadura + 3;
+       Mensagem($"{heroi.Nome} encontrou um escudo de Gerudo, recebendo mais 3 pontos de armadura.");
+
+   }
+
+   public void HyrulianShield(Personagem heroi)
+   {
+
+       heroi.Armadura = heroi.Armadura + 7;
+       Mensagem($"{heroi.Nome} encontrou o Hyrulian Shield, recebendo mais 7 pontos de armadura.");
+
+   }
+
+   public void Helmet(Personagem heroi)
+   {
+
+       heroi.Armadura = heroi.Armadura + 2;
+       Mensagem($"{heroi.Nome} encontrou um elmo, recebendo mais 2 pontos de armadura.");
+
+   }*/
+
+    /*public void Mensagem(String mensagem)
     {
         Console.WriteLine(mensagem);
         Console.WriteLine("Pressione 'Entrer' para continuar...");
         Console.ReadKey();
-    }
-    /* public void Exemplo(Personagem heroi, string item)
-     {
-         Item sword = new Item(item, "encontrou uma espada simples, recebendo mais 1 pontos de ataque", 5);
-         //heroi[]
+    }*/
 
-     }*/
-    public void Ler()
-    {
-        var pathCsv = Directory.GetCurrentDirectory() + "/Itens/Lista1.csv";
-        var lines = File.ReadAllLines(pathCsv);
-
-        foreach (var line in lines)
-        {
-
-            var colunas = line.Split(";");
-
-        }
-    }
 }
 

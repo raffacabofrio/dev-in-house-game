@@ -1,4 +1,4 @@
-﻿﻿
+﻿
 class FlowEngine
 {
     private BattleEngine batalha;
@@ -31,14 +31,14 @@ class FlowEngine
             Ataque = 5,
             AtaqueCritico = 10,
         };
-
+        item.SelecionarHeroi(heroi);
         storyTeller.Speak(@"Na cidade de Gerudo um anão chamado Gundren tenta lhe contratar para escoltar uma carroça de suprimentos até a vila sem lei de Phandalin,
         que fica há dois dias e viagem a sudeste da cidade.");
 
         storyTeller.Speak("Voce aceitará o contrato?");
 
-
         var caminho = Fluxo(heroi, "Sim", "Não");
+        item.PegaItem("SimpleSword");
         if (caminho == 1)
         {
             storyTeller.Speak("Descontente com sua resposta, Grunden , que na verdade é Ganon, te ataca pelas costas!!");
@@ -51,7 +51,6 @@ class FlowEngine
         ContarHistoria(@$"Gundren fica bem animado por {heroi.Nome} ter aceito o contrato e começa a contar sobre a viagem,dizendo apenas que ele e seus irmãos haviam encontrado “algo grande”, e vai pagar dez peças de ouro a você para escoltar os suprimentos em segurança até a Barthen Provisões, um posto de troca em Phandalin.");
 
         ContarHistoria(@$"A jornada o leva ao sul pela Estrada Alta até a Trilha Triboar, que fica ao leste. Perto do meio dia , vocês são emboscados por goblins saqueadores da tribo Dentefi .");
-
 
         storyTeller.Speak($"O que {heroi.Nome} fará: ");
 
@@ -75,7 +74,8 @@ class FlowEngine
         }
 
         Console.WriteLine($"Após saquear o corpo de {monstro.Goblin().Nome} ");
-        item.SimpleSword(heroi);
+        //item.SimpleSword(heroi);
+        item.PegaItem("SimpleSword");
 
         Console.WriteLine($"Após a batalha, {heroi.Nome} e Grunden chegam em segurança até a Barthen Provisões");
         Console.WriteLine($"{heroi.Nome} recebe 10 moedas de ouro.");

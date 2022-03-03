@@ -8,31 +8,30 @@ using System.Threading.Tasks;
 public class Arquivo
 {
     private string _arquivoUrl;
+    private List<List<string>> _lines = new List<List<string>>();
+
     public Arquivo(string arquivo)
     {
         _arquivoUrl = arquivo;
     }
-    public void LerArquivo()
+
+    public List<List<string>> LerArquivo()
     {
-        // Exemplo leitura de CSV
-        //var aventuras = new List<Aventura>();
-
-        var pathCsv = Directory.GetCurrentDirectory() + "/Itens/Lista1.csv";
+        var pathCsv = Directory.GetCurrentDirectory() + _arquivoUrl;
         var lines = File.ReadAllLines(pathCsv);
-
+        int firstLine = 1;
         foreach (var line in lines)
         {
-
+            if (firstLine == 1)
+            {
+                firstLine += 1;
+                continue;
+            }
+            firstLine += 1;
             var colunas = line.Split(";");
-
-            /* aventuras.Add(new Aventura
-             {
-                 Id = colunas[0],
-                 Acao = colunas[1],
-                 Param1 = colunas[2],
-                 Param2 = colunas[3]
-             });*/
+            _lines.Add(colunas.ToList());
         }
+        return _lines;
     }
 }
 
