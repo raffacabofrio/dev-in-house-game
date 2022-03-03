@@ -1,18 +1,19 @@
 ﻿class FlowEngine
 {
     private BattleEngine batalha;
+    private MonsterEngine monstro;
+    private ItemEngine item;
 
     public FlowEngine()
     {
         batalha = new BattleEngine();
+        monstro = new MonsterEngine();
+        item = new ItemEngine();
+    
     }
 
     public void Historia()
     {
-        
-        var monstro = new MonsterEngine();
-        var item = new ItemEngine();
-        var inimigo = monstro.Goblin();
 
         var storyTeller = new GameStoryTeller();
 
@@ -37,9 +38,9 @@
         if(caminho == 1) {
             storyTeller.Speak("Descontente com sua resposta, Grunden , que na verdade é Ganon, te ataca pelas costas!!");   
             batalha.Turno(monstro.Ganon(), heroi);
-            if(heroi.Vida <= 0) {
+            if(heroi.Vida <= 0) 
                 GameOver($"Voce foi morto pelo {monstro.Ganon().Nome}");
-            }
+            
         }      
         ContarHistoria(@$"Gundren fica bem animado por {heroi.Nome} ter aceito o contrato e começa a contar sobre a viagem,dizendo apenas que ele e seus irmãos haviam encontrado “algo grande”, e vai pagar dez peças de ouro a você para escoltar os suprimentos em segurança até a Barthen Provisões, um posto de troca em Phandalin." );
 
@@ -53,18 +54,17 @@
         if(caminho == 1) {
             storyTeller.Speak("Descontente com sua resposta, Grunden , que na verdade é Ganon, te ataca pelas costas!!");   
             batalha.Turno(monstro.Ganon(), heroi);
-            if(heroi.Vida <= 0) {
+            if(heroi.Vida <= 0) 
                 GameOver($"Voce foi morto pelo {monstro.Ganon().Nome}");
-            }
+            
         }
 
-        inimigo = monstro.Goblin();
-        batalha.Turno(heroi, inimigo);
-        if(heroi.Vida <= 0) {
-            GameOver($"Voce foi morto pelo {inimigo.Nome}");
-        }
+//        inimigo = monstro.Goblin();
+        batalha.Turno(heroi, monstro.Goblin());
+        if(heroi.Vida <= 0) GameOver($"Voce foi morto pelo {monstro.Goblin().Nome}");
         
-        Console.WriteLine($"Após saquear o corpo de {inimigo.Nome} ");
+        
+        Console.WriteLine($"Após saquear o corpo de {monstro.Goblin().Nome} ");
         item.SimpleSword(heroi);
 
         Console.WriteLine($"Após a batalha, {heroi.Nome} e Grunden chegam em segurança até a Barthen Provisões");
