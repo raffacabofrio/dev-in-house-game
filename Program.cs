@@ -42,8 +42,14 @@ public class Aventura
     public string? Param1 { get; set; }
     public string? Param2 { get; set; }
 }*/
-//Arquivo arq = new Arquivo("./Itens/TextTemplate1.csv");
-//arq.LerArquivo();
+/*Arquivo arq = new Arquivo("./Aventuras/Ruinas Perdidas de Phandelver.csv");
+List<List<string>> lista = new List<List<string>>();
+lista = arq.LerArquivo();
+
+foreach (var line in lista)
+{
+    Console.WriteLine(line[2]);
+}*/
 
 //var heroi = new Personagem
 /*{

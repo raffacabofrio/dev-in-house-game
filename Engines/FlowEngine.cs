@@ -38,6 +38,7 @@ class FlowEngine
         storyTeller.Speak("Voce aceitará o contrato?");
 
         var caminho = Fluxo(heroi, "Sim", "Não");
+        item.PegaItem("SimpleSword");
         if (caminho == 1)
         {
             storyTeller.Speak("Descontente com sua resposta, Grunden , que na verdade é Ganon, te ataca pelas costas!!");

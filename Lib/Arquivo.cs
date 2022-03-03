@@ -9,7 +9,6 @@ public class Arquivo
 {
     private string _arquivoUrl;
     private List<List<string>> _lines = new List<List<string>>();
-    //private string[,] _lines = new string[,] { };
 
     public Arquivo(string arquivo)
     {
