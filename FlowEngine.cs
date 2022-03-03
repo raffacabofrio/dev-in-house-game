@@ -3,7 +3,7 @@
 
     private BattleEngine batalha;
 
-    private MonsterEngine monster;
+    private MonsterEngine monstro;
 
     private ItemEngine item;
    
