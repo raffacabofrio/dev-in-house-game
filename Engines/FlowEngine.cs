@@ -31,12 +31,11 @@ class FlowEngine
             Ataque = 5,
             AtaqueCritico = 10,
         };
-
+        item.SelecionarHeroi(heroi);
         storyTeller.Speak(@"Na cidade de Gerudo um anão chamado Gundren tenta lhe contratar para escoltar uma carroça de suprimentos até a vila sem lei de Phandalin,
         que fica há dois dias e viagem a sudeste da cidade.");
 
         storyTeller.Speak("Voce aceitará o contrato?");
-
 
         var caminho = Fluxo(heroi, "Sim", "Não");
         if (caminho == 1)
@@ -75,7 +74,7 @@ class FlowEngine
 
         Console.WriteLine($"Após saquear o corpo de {monstro.Goblin().Nome} ");
         //item.SimpleSword(heroi);
-        item.PegaItem("SimpleSword", heroi);
+        item.PegaItem("SimpleSword");
 
         Console.WriteLine($"Após a batalha, {heroi.Nome} e Grunden chegam em segurança até a Barthen Provisões");
         Console.WriteLine($"{heroi.Nome} recebe 10 moedas de ouro.");

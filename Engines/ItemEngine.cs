@@ -2,7 +2,7 @@ public class ItemEngine
 {
     private List<List<string>> _itensLista = new List<List<string>>();
     private StoryTeller _storyTeller = new GameStoryTeller();
-
+    private Personagem _heroi;
 
     /*public void Maca(Personagem heroi)
     {
@@ -99,7 +99,7 @@ public class ItemEngine
     }
 
     // Seleciona o item e atribui suas propriedades ao heroi 
-    public bool PegaItem(string item, Personagem heroi)
+    public bool PegaItem(string item)
     {
         // modificar isso para usar com o linq
         foreach (var line in _itensLista)
@@ -110,18 +110,18 @@ public class ItemEngine
                 switch (itemDesejado.Atributo)
                 {
                     case "ataque":
-                        heroi.Ataque += itemDesejado.Pontos;
-                        _storyTeller.Speak($"{heroi.Nome} {itemDesejado.Mensagem}");
+                        _heroi.Ataque += itemDesejado.Pontos;
+                        _storyTeller.Speak($"{_heroi.Nome} {itemDesejado.Mensagem}");
                         break;
 
                     case "defesa":
-                        heroi.Armadura += itemDesejado.Pontos;
-                        _storyTeller.Speak($"{heroi.Nome} {itemDesejado.Mensagem}");
+                        _heroi.Armadura += itemDesejado.Pontos;
+                        _storyTeller.Speak($"{_heroi.Nome} {itemDesejado.Mensagem}");
                         break;
 
                     case "vida":
-                        heroi.Vida += itemDesejado.Pontos;
-                        _storyTeller.Speak($"{heroi.Nome} {itemDesejado.Mensagem}");
+                        _heroi.Vida += itemDesejado.Pontos;
+                        _storyTeller.Speak($"{_heroi.Nome} {itemDesejado.Mensagem}");
                         break;
 
                     default:
@@ -141,6 +141,11 @@ public class ItemEngine
         Console.WriteLine("Carregando arquivos!");
         Arquivo arquivoReader = new Arquivo("./Itens/TextTemplate1.csv");
         _itensLista = arquivoReader.LerArquivo();
+    }
+
+    public void SelecionarHeroi(Personagem heroi)
+    {
+        _heroi = heroi;
     }
 }
 
