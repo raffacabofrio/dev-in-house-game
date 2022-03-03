@@ -1,4 +1,4 @@
-﻿﻿
+﻿
 class FlowEngine
 {
     private BattleEngine batalha;
@@ -52,7 +52,6 @@ class FlowEngine
 
         ContarHistoria(@$"A jornada o leva ao sul pela Estrada Alta até a Trilha Triboar, que fica ao leste. Perto do meio dia , vocês são emboscados por goblins saqueadores da tribo Dentefi .");
 
-
         storyTeller.Speak($"O que {heroi.Nome} fará: ");
 
         caminho = Fluxo(heroi, "Lutar", "Correr");
@@ -75,7 +74,8 @@ class FlowEngine
         }
 
         Console.WriteLine($"Após saquear o corpo de {monstro.Goblin().Nome} ");
-        item.SimpleSword(heroi);
+        //item.SimpleSword(heroi);
+        item.PegaItem("SimpleSword", heroi);
 
         Console.WriteLine($"Após a batalha, {heroi.Nome} e Grunden chegam em segurança até a Barthen Provisões");
         Console.WriteLine($"{heroi.Nome} recebe 10 moedas de ouro.");

@@ -1,12 +1,14 @@
 public class ItemEngine
 {
     private List<List<string>> _itensLista = new List<List<string>>();
+    private StoryTeller _storyTeller = new GameStoryTeller();
 
+    /*Ao construir a classe ItemEngine, o metodo Carregar arquivos vai ser acionado */
     public ItemEngine()
     {
         CarregarItens();
     }
-    public void Maca(Personagem heroi)
+    /*public void Maca(Personagem heroi)
     {
 
         heroi.Vida = heroi.Vida + 5;
@@ -84,15 +86,15 @@ public class ItemEngine
         heroi.Armadura = heroi.Armadura + 2;
         Mensagem($"{heroi.Nome} encontrou um elmo, recebendo mais 2 pontos de armadura.");
 
-    }
+    }*/
 
-    public void Mensagem(String mensagem)
+    /*public void Mensagem(String mensagem)
     {
         Console.WriteLine(mensagem);
         Console.WriteLine("Pressione 'Entrer' para continuar...");
         Console.ReadKey();
-    }
-    public bool PegaItem(string item)
+    }*/
+    public bool PegaItem(string item, Personagem heroi)
     {
         // modificar isso para usar com o linq
         foreach (var line in _itensLista)
@@ -103,15 +105,18 @@ public class ItemEngine
                 switch (itemDesejado.Atributo)
                 {
                     case "ataque":
-                        Console.WriteLine("ataque");
+                        heroi.Ataque += itemDesejado.Pontos;
+                        _storyTeller.Speak($"{heroi.Nome} {itemDesejado.Mensagem}");
                         break;
 
                     case "defesa":
-                        Console.WriteLine("defesa");
+                        heroi.Armadura += itemDesejado.Pontos;
+                        _storyTeller.Speak($"{heroi.Nome} {itemDesejado.Mensagem}");
                         break;
 
                     case "vida":
-                        Console.WriteLine("vida");
+                        heroi.Vida += itemDesejado.Pontos;
+                        _storyTeller.Speak($"{heroi.Nome} {itemDesejado.Mensagem}");
                         break;
 
                     default:
@@ -124,7 +129,7 @@ public class ItemEngine
         throw new Exception("O Item desejado nao existe no arquivo");
 
     }
-    public void CarregarItens()
+    private void CarregarItens()
     {
         Console.WriteLine("Carregando arquivos!");
         Arquivo arquivoReader = new Arquivo("./Itens/TextTemplate1.csv");

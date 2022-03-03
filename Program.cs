@@ -1,7 +1,7 @@
 ﻿
 
-//var fluxo = new FlowEngine();
-//fluxo.Historia();
+var fluxo = new FlowEngine();
+fluxo.Historia();
 
 // to do.. criar uma classe para itens de cenario, EXEMPLO: ARMADILHAS
 
@@ -45,6 +45,14 @@ public class Aventura
 //Arquivo arq = new Arquivo("./Itens/TextTemplate1.csv");
 //arq.LerArquivo();
 
-var itemEngine = new ItemEngine();
-itemEngine.PegaItem("Maca");
+//var heroi = new Personagem
+/*{
+    Nome = "andre",
+    Vida = 50,
+    Armadura = 5,
+    Ataque = 5,
+    AtaqueCritico = 10,
+};*/
+//var itemEngine = new ItemEngine();
+//itemEngine.PegaItem("Maca", heroi);
 //Console.WriteLine(item);
