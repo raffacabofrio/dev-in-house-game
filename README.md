@@ -2,7 +2,12 @@
 Game RPG de turnos inspirado em Zelda.
 
 
-# padr„o dos CSVs
+# padr√£o dos CSVs
 - delimitador: ;
 - encoding: UTF8
 - quebra de linha: \n 
+
+
+<div align="center">
+  <img src="https://github.com/raffacabofrio/dev-in-house-game/blob/ItensSprint2/ItemEngine.png"/>
+</div>  
