@@ -1,6 +1,11 @@
 public class ItemEngine
 {
-
+    private List<string> _itensLista = new List<string>();
+    
+    public ItemEngine()
+    {
+        CarregarItens();
+    }
     public void Maca(Personagem heroi)
     {
 
@@ -93,7 +98,7 @@ public class ItemEngine
          //heroi[]
 
      }*/
-    public void Ler()
+    /*public void Ler()
     {
         var pathCsv = Directory.GetCurrentDirectory() + "/Itens/Lista1.csv";
         var lines = File.ReadAllLines(pathCsv);
@@ -104,6 +109,22 @@ public class ItemEngine
             var colunas = line.Split(";");
 
         }
+    }*/
+    public void PegaItem(string item)
+    {
+        //int tamanho =Convert.ToInt32( _itensLista[_itensLista.Count-1]);
+        //var objetoItem = _itensLista.Where(itemNome => itemNome == item);
+        /*for (var i = 0;  i <= _itensLista.Count; i++)
+        {
+            Console.WriteLine(_itensLista[6]);
+        }*/
+
+    }
+    public void CarregarItens()
+    {
+        Console.WriteLine("Carregando arquivos!");
+        Arquivo arquivoReader =  new Arquivo("./Itens/TextTemplate1.csv");
+        _itensLista =  arquivoReader.LerArquivo();
     }
 }
 
