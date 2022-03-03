@@ -2,17 +2,21 @@
 {
     private BattleEngine batalha;
 
+    private MonsterEngine monster;
+
+    private ItemEngine item;
     public FlowEngine()
     {
-        batalha = new BattleEngine();
+       batalha = new BattleEngine();
+       monster = new MonsterEngine();
+       item = new ItemEngine();
     }
 
     public void Historia()
     {
         
-        var monstro = new MonsterEngine();
-        var item = new ItemEngine();
-        var inimigo = monstro.Goblin();
+        
+       
 
         var storyTeller = new GameStoryTeller();
 
@@ -58,13 +62,13 @@
             }
         }
 
-        inimigo = monstro.Goblin();
-        batalha.Turno(heroi, inimigo);
+        
+        batalha.Turno(heroi, monstro.Goblin());
         if(heroi.Vida <= 0) {
-            GameOver($"Voce foi morto pelo {inimigo.Nome}");
+            GameOver($"Voce foi morto pelo {monstro.Goblin().Nome}");
         }
         
-        Console.WriteLine($"Após saquear o corpo de {inimigo.Nome} ");
+        Console.WriteLine($"Após saquear o corpo de {monstro.Goblin().Nome} ");
         item.SimpleSword(heroi);
 
         Console.WriteLine($"Após a batalha, {heroi.Nome} e Grunden chegam em segurança até a Barthen Provisões");
