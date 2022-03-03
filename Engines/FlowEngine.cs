@@ -1,22 +1,23 @@
-﻿class FlowEngine
+﻿
+class FlowEngine
 {
     private BattleEngine batalha;
 
-    private MonsterEngine monster;
+    private MonsterEngine monstro;
 
     private ItemEngine item;
     public FlowEngine()
     {
-       batalha = new BattleEngine();
-       monster = new MonsterEngine();
-       item = new ItemEngine();
+        batalha = new BattleEngine();
+        monstro = new MonsterEngine();
+        item = new ItemEngine();
     }
 
     public void Historia()
     {
-        
-        
-       
+
+
+
 
         var storyTeller = new GameStoryTeller();
 
@@ -32,42 +33,47 @@
         };
 
         storyTeller.Speak(@"Na cidade de Gerudo um anão chamado Gundren tenta lhe contratar para escoltar uma carroça de suprimentos até a vila sem lei de Phandalin,
-        que fica há dois dias e viagem a sudeste da cidade." );
+        que fica há dois dias e viagem a sudeste da cidade.");
 
-        storyTeller.Speak("Voce aceitará o contrato?" );
-                            
+        storyTeller.Speak("Voce aceitará o contrato?");
 
-        var caminho = Fluxo(heroi,"Sim","Não"); 
-        if(caminho == 1) {
-            storyTeller.Speak("Descontente com sua resposta, Grunden , que na verdade é Ganon, te ataca pelas costas!!");   
+
+        var caminho = Fluxo(heroi, "Sim", "Não");
+        if (caminho == 1)
+        {
+            storyTeller.Speak("Descontente com sua resposta, Grunden , que na verdade é Ganon, te ataca pelas costas!!");
             batalha.Turno(monstro.Ganon(), heroi);
-            if(heroi.Vida <= 0) {
+            if (heroi.Vida <= 0)
+            {
                 GameOver($"Voce foi morto pelo {monstro.Ganon().Nome}");
             }
-        }      
-        ContarHistoria(@$"Gundren fica bem animado por {heroi.Nome} ter aceito o contrato e começa a contar sobre a viagem,dizendo apenas que ele e seus irmãos haviam encontrado “algo grande”, e vai pagar dez peças de ouro a você para escoltar os suprimentos em segurança até a Barthen Provisões, um posto de troca em Phandalin." );
+        }
+        ContarHistoria(@$"Gundren fica bem animado por {heroi.Nome} ter aceito o contrato e começa a contar sobre a viagem,dizendo apenas que ele e seus irmãos haviam encontrado “algo grande”, e vai pagar dez peças de ouro a você para escoltar os suprimentos em segurança até a Barthen Provisões, um posto de troca em Phandalin.");
 
-        ContarHistoria(@$"A jornada o leva ao sul pela Estrada Alta até a Trilha Triboar, que fica ao leste. Perto do meio dia , vocês são emboscados por goblins saqueadores da tribo Dentefi ." );
+        ContarHistoria(@$"A jornada o leva ao sul pela Estrada Alta até a Trilha Triboar, que fica ao leste. Perto do meio dia , vocês são emboscados por goblins saqueadores da tribo Dentefi .");
 
 
         storyTeller.Speak($"O que {heroi.Nome} fará: ");
 
-        caminho = Fluxo(heroi,"Lutar","Correr"); 
+        caminho = Fluxo(heroi, "Lutar", "Correr");
 
-        if(caminho == 1) {
-            storyTeller.Speak("Descontente com sua resposta, Grunden , que na verdade é Ganon, te ataca pelas costas!!");   
+        if (caminho == 1)
+        {
+            storyTeller.Speak("Descontente com sua resposta, Grunden , que na verdade é Ganon, te ataca pelas costas!!");
             batalha.Turno(monstro.Ganon(), heroi);
-            if(heroi.Vida <= 0) {
+            if (heroi.Vida <= 0)
+            {
                 GameOver($"Voce foi morto pelo {monstro.Ganon().Nome}");
             }
         }
 
-        
+
         batalha.Turno(heroi, monstro.Goblin());
-        if(heroi.Vida <= 0) {
+        if (heroi.Vida <= 0)
+        {
             GameOver($"Voce foi morto pelo {monstro.Goblin().Nome}");
         }
-        
+
         Console.WriteLine($"Após saquear o corpo de {monstro.Goblin().Nome} ");
         item.SimpleSword(heroi);
 
@@ -75,13 +81,13 @@
         Console.WriteLine($"{heroi.Nome} recebe 10 moedas de ouro.");
         Console.WriteLine("Continua ...");
     }
-    public int Fluxo(Personagem heroi, string opcao_1, string opcao_2 )
+    public int Fluxo(Personagem heroi, string opcao_1, string opcao_2)
     {
-        
+
         var decisao = 1;
         bool inputValido2 = false;
 
-        List<string> caminhos = new List<string> { opcao_1, opcao_2};
+        List<string> caminhos = new List<string> { opcao_1, opcao_2 };
         do
         {
 
@@ -102,19 +108,21 @@
             }
         } while (!inputValido2);
 
-        return decisao; 
-        
-    }
-    
-   public void ContarHistoria(string historia){
-       historia = historia.Replace("  " , " ");
-       // historia = historia.Replace("\n" , "");
-       Console.WriteLine(historia);
-       Console.WriteLine("Pressione enter para continuar");
-       Console.ReadKey();
+        return decisao;
 
-   }
-    public void GameOver(string mensagem) {
+    }
+
+    public void ContarHistoria(string historia)
+    {
+        historia = historia.Replace("  ", " ");
+        // historia = historia.Replace("\n" , "");
+        Console.WriteLine(historia);
+        Console.WriteLine("Pressione enter para continuar");
+        Console.ReadKey();
+
+    }
+    public void GameOver(string mensagem)
+    {
         Console.WriteLine(mensagem);
         Environment.Exit(0);
     }
