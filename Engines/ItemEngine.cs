@@ -92,19 +92,36 @@ public class ItemEngine
         Console.WriteLine("Pressione 'Entrer' para continuar...");
         Console.ReadKey();
     }
-    public void PegaItem(string item)
+    public bool PegaItem(string item)
     {
         // modificar isso para usar com o linq
         foreach (var line in _itensLista)
         {
-            //Console.WriteLine(line[1]);
             if (line[1].Trim() == item)
             {
                 Item itemDesejado = new Item(int.Parse(line[0]), line[1], line[2], line[3], int.Parse(line[4]), line[5]);
-                Console.WriteLine(itemDesejado["Nome"]);
+                switch (itemDesejado.Atributo)
+                {
+                    case "ataque":
+                        Console.WriteLine("ataque");
+                        break;
+
+                    case "defesa":
+                        Console.WriteLine("defesa");
+                        break;
+
+                    case "vida":
+                        Console.WriteLine("vida");
+                        break;
+
+                    default:
+                        Console.WriteLine("n sei o que dizer");
+                        break;
+                }
+                return true;
             }
         }
-        //throw new Exception("O Item desejado nao existe no arquivo");
+        throw new Exception("O Item desejado nao existe no arquivo");
 
     }
     public void CarregarItens()

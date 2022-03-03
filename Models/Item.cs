@@ -31,8 +31,7 @@ public class Item
         Description = descricao;
         Mensagem = mensagem;
         Pontos = pontos;
-        Atributo = atributo;
-
+        Atributo = atributo.ToLower().Trim();
     }
 
 }
