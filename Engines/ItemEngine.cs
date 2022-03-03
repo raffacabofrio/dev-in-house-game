@@ -3,11 +3,7 @@ public class ItemEngine
     private List<List<string>> _itensLista = new List<List<string>>();
     private StoryTeller _storyTeller = new GameStoryTeller();
 
-    /*Ao construir a classe ItemEngine, o metodo Carregar arquivos vai ser acionado */
-    public ItemEngine()
-    {
-        CarregarItens();
-    }
+
     /*public void Maca(Personagem heroi)
     {
 
@@ -94,6 +90,15 @@ public class ItemEngine
         Console.WriteLine("Pressione 'Entrer' para continuar...");
         Console.ReadKey();
     }*/
+
+
+    /*Ao construir a classe ItemEngine, o metodo Carregar arquivos vai ser acionado */
+    public ItemEngine()
+    {
+        CarregarItens();
+    }
+
+    // Seleciona o item e atribui suas propriedades ao heroi 
     public bool PegaItem(string item, Personagem heroi)
     {
         // modificar isso para usar com o linq
@@ -129,6 +134,8 @@ public class ItemEngine
         throw new Exception("O Item desejado nao existe no arquivo");
 
     }
+
+    // Carrega os itens do arquivo csv
     private void CarregarItens()
     {
         Console.WriteLine("Carregando arquivos!");
