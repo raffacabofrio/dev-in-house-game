@@ -1,8 +1,9 @@
 public class StoryTeller{
-    public string Narrador;
-    public ConsoleColor BackgroundColor;
-    public ConsoleColor ForegroundColor;
-    public readonly int time = 500;
+    private string Narrador;
+    private ConsoleColor BackgroundColor;
+    private ConsoleColor ForegroundColor;
+    private readonly int time = 500;
+
     public StoryTeller(ConsoleColor backgroundColor, ConsoleColor foregroundColor, string narrador)
     {
         BackgroundColor = backgroundColor;
