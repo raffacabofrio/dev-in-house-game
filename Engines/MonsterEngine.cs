@@ -136,13 +136,13 @@ public class MonsterEngine {
         return carnical;
     }
     public Monstro Goblin() {
-        var goblin = new Monstro{
+        var goblin = new Monstro {
             Nome = "Goblin",
             Vida = 10,
             Armadura = 0,
             Ataque = 0,
             AtaqueCritico = 2,
-            FraseDeMorte = "Eu me rendo. Urgggg..."
+            Xp = 100,
         };
 
         return goblin;
@@ -303,14 +303,14 @@ public Monstro RamosSecos() {
         };
         return zumbi;
     }
-    public Monstro Ganon() {
+public Monstro Ganon() {
         var ganon = new Monstro{
-            Nome = "Ganon",
-            Vida = 290,
-            Armadura =  19,
-            Ataque = 16,
-            AtaqueCritico = 32,
-            FraseDeMorte = "Não acredito que um verme como vc me venceu. Urgggg..."
+        Nome = "Ganon",
+        Vida = 290,
+        Armadura =  19,
+        Ataque = 16,
+        AtaqueCritico = 32,
+        Xp = 100,
         };
         return ganon;
     }
