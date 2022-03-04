@@ -53,7 +53,7 @@ public class ItemEngine
     private void CarregarItens()
     {
         Console.WriteLine("Carregando arquivos!");
-        Arquivo arquivoReader = new Arquivo("./Itens/TextTemplate1.csv");
+        Arquivo arquivoReader = new Arquivo("./Csv/Itens.csv");
         _itensLista = arquivoReader.LerArquivo();
     }
 

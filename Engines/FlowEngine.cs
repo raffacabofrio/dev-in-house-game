@@ -2,25 +2,20 @@
 class FlowEngine
 {
     private BattleEngine batalha;
-
     private MonsterEngine monstro;
-
     private ItemEngine item;
+    private GameStoryTeller storyTeller;
+
     public FlowEngine()
     {
         batalha = new BattleEngine();
         monstro = new MonsterEngine();
         item = new ItemEngine();
+        storyTeller = new GameStoryTeller();
     }
 
     public void Historia()
-    {
-
-
-
-
-        var storyTeller = new GameStoryTeller();
-
+    {    
         storyTeller.Speak("Qual e o seu nome heroi ? ");
         var nome = Console.ReadLine();
         var heroi = new Personagem
@@ -28,10 +23,16 @@ class FlowEngine
             Nome = nome,
             Vida = 50,
             Armadura = 5,
-            Ataque = 5,
+            Ataque = 100,
             AtaqueCritico = 10,
         };
-        item.SelecionarHeroi(heroi);
+
+
+        Turno(heroi, "Goblin");
+
+        GameOver("TESTE DO DEV");
+
+
         storyTeller.Speak(@"Na cidade de Gerudo um anão chamado Gundren tenta lhe contratar para escoltar uma carroça de suprimentos até a vila sem lei de Phandalin,
         que fica há dois dias e viagem a sudeste da cidade.");
 
@@ -67,7 +68,8 @@ class FlowEngine
         }
 
 
-        batalha.Turno(heroi, monstro.Goblin());
+        Turno(heroi, "Goblin");
+
         if (heroi.Vida <= 0)
         {
             GameOver($"Voce foi morto pelo {monstro.Goblin().Nome}");
@@ -125,6 +127,18 @@ class FlowEngine
     {
         Console.WriteLine(mensagem);
         Environment.Exit(0);
+    }
+
+    private void Turno(Personagem p1, String p2Str)
+    {
+        Turno2(p1, p2Str);
+        GC.Collect(); // invoque o destruidor
+    }
+
+    private void Turno2(Personagem p1, String p2Str)
+    {
+        var p2 = monstro.Goblin();
+        batalha.Turno(p1, p2);
     }
 
 }

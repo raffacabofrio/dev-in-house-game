@@ -9,12 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="Aventuras\Ruinas Perdidas de Phandelver.csv">
+    <None Update="Csv\Aventuras\Ruinas Perdidas de Phandelver.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Itens\TextTemplate1.csv">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>TextTemplate1.cs</LastGenOutput>
+    <None Update="Csv\Itens.csv">
+      <Generator></Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

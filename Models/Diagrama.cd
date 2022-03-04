@@ -1,27 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Item">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAACIAAAAABgAAAEIAJABAAAAAAAAAAAQAAAAAEAEAA=</HashCode>
+      <FileName>Models\Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mochila">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAABAAAAAAAAAAAAAABAAQEAAAAA=</HashCode>
+      <FileName>Models\Mochila.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="Personagem">
-    <Position X="0.75" Y="1" Width="1.5" />
+    <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAQAAAAAAAAAAAAAAAAAAAAAAQAAAAICAAAEAAAA=</HashCode>
       <FileName>Models\Personagem.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Item">
-    <Position X="3" Y="0.5" Width="1.5" />
+  <Class Name="Monstro">
+    <Position X="2.5" Y="1.25" Width="1.5" />
     <Compartments>
-      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAIAAAAABgAAAEIAJABAAAAAAAAAAAQAAAAAEAEAA=</HashCode>
-      <FileName>Models\Item.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Mochila">
-    <Position X="5.5" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AACAAAAAAAAAAAAAAABAAAAAAAAAAAAAABAAQEAAAAA=</HashCode>
-      <FileName>Models\Mochila.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Models\Personagem.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

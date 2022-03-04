@@ -1,7 +1,8 @@
 public class MonsterEngine {
 
- public Personagem AranhaGigante() {
-        var AranhaGigante = new Personagem{
+ public Monstro AranhaGigante() {
+        var AranhaGigante = new Monstro
+        {
         Nome = "Aranha Gigante",
         Vida = 26,
         Armadura = 14,
@@ -10,8 +11,9 @@ public class MonsterEngine {
         };
         return AranhaGigante;
     }
-     public Personagem Bandido() {
-        var Bandido = new Personagem{
+     public Monstro Bandido() {
+        var Bandido = new Monstro
+        {
         Nome = "Bandido Marcarrubra",
         Vida = 16,
         Armadura = 14,
@@ -20,8 +22,9 @@ public class MonsterEngine {
         };
         return Bandido;
     }
-    public Personagem Bugbear() {
-        var bugbear = new Personagem{
+    public Monstro Bugbear() {
+        var bugbear = new Monstro
+        {
         Nome = "Bugbear",
         Vida = 27,
         Armadura =   16,
@@ -31,8 +34,9 @@ public class MonsterEngine {
         return bugbear;
     }
 
-    public Personagem CranioEmChamas() {
-        var cranioEmChamas = new Personagem{
+    public Monstro CranioEmChamas() {
+        var cranioEmChamas = new Monstro
+        {
         Nome = "Cranio Em Chamas",
         Vida = 40,
         Armadura =   13,
@@ -42,8 +46,9 @@ public class MonsterEngine {
         return cranioEmChamas;
     }
 
-    public Personagem Cultista() {
-        var cultista = new Personagem{
+    public Monstro Cultista() {
+        var cultista = new Monstro
+        {
         Nome = "Cultista",
         Vida = 9,
         Armadura =   12,
@@ -53,8 +58,9 @@ public class MonsterEngine {
         return cultista;
     }
 
-    public Personagem Doppelganger() {
-        var doppelganger = new Personagem{
+    public Monstro Doppelganger() {
+        var doppelganger = new Monstro
+        {
         Nome = "Doppelganger",
         Vida = 52,
         Armadura =   14,
@@ -63,8 +69,9 @@ public class MonsterEngine {
         };
         return doppelganger;
     }
-   public Personagem DragaoVerde() {
-        var dragaoVerde = new Personagem{
+   public Monstro DragaoVerde() {
+        var dragaoVerde = new Monstro
+        {
         Nome = "Dragao Verde Jovem",
         Vida = 136,
         Armadura = 18,
@@ -74,8 +81,8 @@ public class MonsterEngine {
         return dragaoVerde;
     }
 
-     public Personagem Esqueleto() {
-        var Esqueleto = new Personagem{
+     public Monstro Esqueleto() {
+        var Esqueleto = new Monstro{
         Nome = "Esqueleto",
         Vida = 13,
         Armadura = 13,
@@ -85,8 +92,8 @@ public class MonsterEngine {
         return Esqueleto;
     }
 
-     public Personagem Carnical() {
-        var carnical = new Personagem{
+     public Monstro Carnical() {
+        var carnical = new Monstro{
         Nome = "Carniçal",
         Vida = 22,
         Armadura = 12,
@@ -95,19 +102,21 @@ public class MonsterEngine {
         };
         return carnical;
     }
-    public Personagem Goblin() {
-        var goblin = new Personagem{
-        Nome = "Goblin",
-        Vida = 10,
-        Armadura = 0,
-        Ataque = 0,
-        AtaqueCritico = 2,
+    public Monstro Goblin() {
+        var goblin = new Monstro{
+            Nome = "Goblin",
+            Vida = 10,
+            Armadura = 0,
+            Ataque = 0,
+            AtaqueCritico = 2,
+            FraseDeMorte = "Eu me rendo. Urgggg..."
         };
+
         return goblin;
     }
 
-      public Personagem Gosma() {
-        var Gosma = new Personagem{
+      public Monstro Gosma() {
+        var Gosma = new Monstro{
         Nome = "Gosma Ocre",
         Vida = 45,
         Armadura = 8,
@@ -116,8 +125,8 @@ public class MonsterEngine {
         };
         return Gosma;
     }
- public Personagem Robgoblin() {
-        var robgoblin = new Personagem{
+ public Monstro Robgoblin() {
+        var robgoblin = new Monstro{
         Nome = "Robgoblin",
         Vida = 11,
         Armadura = 18,
@@ -126,8 +135,8 @@ public class MonsterEngine {
         };
         return robgoblin;
     }
-    public Personagem Lobo() {
-        var lobo = new Personagem{
+    public Monstro Lobo() {
+        var lobo = new Monstro{
         Nome = "Lobo",
         Vida = 11,
         Armadura =   13,
@@ -136,8 +145,8 @@ public class MonsterEngine {
         };
         return lobo;
     }
-    public Personagem MagoMaligno() {
-        var magoMaligno = new Personagem{
+    public Monstro MagoMaligno() {
+        var magoMaligno = new Monstro{
         Nome = "Mago Maligno",
         Vida = 22,
         Armadura = 12,
@@ -146,8 +155,8 @@ public class MonsterEngine {
         };
         return magoMaligno;
     }
-    public Personagem Mormesk() {
-        var mormesk = new Personagem{
+    public Monstro Mormesk() {
+        var mormesk = new Monstro{
         Nome = "Mormesk a Aparição",
         Vida = 45,
         Armadura =   13,
@@ -156,8 +165,8 @@ public class MonsterEngine {
         };
         return mormesk;
     }
-    public Personagem Nezzar() {
-        var nezzar = new Personagem{
+    public Monstro Nezzar() {
+        var nezzar = new Monstro{
         Nome = "Nezzar, o Aranha Negra",
         Vida = 27,
         Armadura =   11,
@@ -166,8 +175,8 @@ public class MonsterEngine {
         };
         return nezzar;
     }
-    public Personagem Nothic() {
-        var nothic = new Personagem{
+    public Monstro Nothic() {
+        var nothic = new Monstro{
         Nome = "Nothic",
         Vida = 45,
         Armadura =   15,
@@ -177,8 +186,8 @@ public class MonsterEngine {
         return nothic;
     }
 
-    public Personagem Ogro() {
-        var ogro = new Personagem{
+    public Monstro Ogro() {
+        var ogro = new Monstro{
         Nome = "Ogro",
         Vida = 59,
         Armadura =   11,
@@ -187,8 +196,8 @@ public class MonsterEngine {
         };
         return ogro;
     }
-     public Personagem Orc() {
-        var orc = new Personagem{
+     public Monstro Orc() {
+        var orc = new Monstro{
         Nome = "Orc",
         Vida = 15,
         Armadura =  13,
@@ -198,8 +207,8 @@ public class MonsterEngine {
         return orc;
     }
 
- public Personagem Plebeu() {
-        var plebeu = new Personagem{
+ public Monstro Plebeu() {
+        var plebeu = new Monstro{
         Nome = "Plebeu",
         Vida = 4,
         Armadura =   10,
@@ -208,8 +217,8 @@ public class MonsterEngine {
         };
         return plebeu;
     }
-public Personagem RamosSecos() {
-        var ramosSecos = new Personagem{
+public Monstro RamosSecos() {
+        var ramosSecos = new Monstro{
         Nome = "Ramos Secos",
         Vida = 4,
         Armadura =   10,
@@ -218,8 +227,8 @@ public Personagem RamosSecos() {
         };
         return ramosSecos;
     }
-    public Personagem Sildar() {
-        var sildar = new Personagem{
+    public Monstro Sildar() {
+        var sildar = new Monstro{
         Nome = "Sildar Hallwinter",
         Vida = 58,
         Armadura =   12,
@@ -229,8 +238,8 @@ public Personagem RamosSecos() {
         return sildar;
     }
 
-    public Personagem Stirge() {
-        var stirge = new Personagem{
+    public Monstro Stirge() {
+        var stirge = new Monstro{
         Nome = "Stirge",
         Vida = 2,
         Armadura =   14,
@@ -240,8 +249,8 @@ public Personagem RamosSecos() {
         return stirge;
     }
   
-    public Personagem UrsoCoruja() {
-        var ursoCoruja = new Personagem{
+    public Monstro UrsoCoruja() {
+        var ursoCoruja = new Monstro{
         Nome = "Urso Coruja",
         Vida = 2,
         Armadura =   14,
@@ -251,8 +260,8 @@ public Personagem RamosSecos() {
         return ursoCoruja;
     }
 
-    public Personagem Zumbi() {
-        var zumbi = new Personagem{
+    public Monstro Zumbi() {
+        var zumbi = new Monstro{
         Nome = "Zumbi",
         Vida = 22,
         Armadura =   8,
@@ -261,13 +270,14 @@ public Personagem RamosSecos() {
         };
         return zumbi;
     }
-public Personagem Ganon() {
-        var ganon = new Personagem{
-        Nome = "Ganon",
-        Vida = 290,
-        Armadura =  19,
-        Ataque = 16,
-        AtaqueCritico = 32,
+    public Monstro Ganon() {
+        var ganon = new Monstro{
+            Nome = "Ganon",
+            Vida = 290,
+            Armadura =  19,
+            Ataque = 16,
+            AtaqueCritico = 32,
+            FraseDeMorte = "Não acredito que um verme como vc me venceu. Urgggg..."
         };
         return ganon;
     }
