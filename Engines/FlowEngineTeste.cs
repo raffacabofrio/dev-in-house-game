@@ -70,7 +70,7 @@ public class FlowEngineTeste
 
         if (decisao == 1)
         {
-            ContaHistoria(escolhasPonteiro[decisao]);
+            ContaHistoria(escolhasPonteiro[decisao - 1]);
         }
         else
         {
