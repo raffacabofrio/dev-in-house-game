@@ -16,8 +16,11 @@ class FlowEngine
 
     public void Historia()
     {    
-        storyTeller.Speak("Qual e o seu nome heroi ? ");
-        var nome = Console.ReadLine();
+        //storyTeller.Speak("Qual e o seu nome heroi ? ");
+        //var nome = Console.ReadLine();
+
+        var nome = "Linq";
+
         var heroi = new Personagem
         {
             Nome = nome,
@@ -27,7 +30,10 @@ class FlowEngine
             AtaqueCritico = 10,
         };
 
+        storyTeller.Speak("Luta com 3 Goblins em sequência pra testar o método destruidor.");
 
+        Turno(heroi, "Goblin");
+        Turno(heroi, "Goblin");
         Turno(heroi, "Goblin");
 
         GameOver("TESTE DO DEV");
@@ -132,7 +138,8 @@ class FlowEngine
     private void Turno(Personagem p1, String p2Str)
     {
         Turno2(p1, p2Str);
-        GC.Collect(); // invoque o destruidor
+        GC.Collect(); // força o destruidor ser chamado.
+        Thread.Sleep(1000); // dá um pouco de tempo do GC fazer o trampo dele.
     }
 
     private void Turno2(Personagem p1, String p2Str)

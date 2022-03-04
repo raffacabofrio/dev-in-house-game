@@ -1,7 +1,7 @@
 public class ItemEngine
 {
     private List<List<string>> _itensLista = new List<List<string>>();
-    private StoryTeller _storyTeller = new GameStoryTeller();
+    private StoryTellerEngine _storyTeller = new GameStoryTeller();
     private Personagem _heroi;
 
    

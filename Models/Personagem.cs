@@ -11,13 +11,22 @@ public class Personagem
 
 public class Monstro : Personagem
 {
+    private StoryTellerEngine _storyTeller;
+
     public string FraseDeMorte { get; set; } = "FRASE DE MORTE PADRÃO.";
+
+
+    public Monstro()
+    {
+        _storyTeller = new MonsterStoryTeller();
+    }
 
     ~Monstro()
     {
-        //  TODO: verificar a Vida se o monstro realmente morreu.
-
-        // TODO: usar o storyTeller
-        Console.WriteLine(FraseDeMorte);
+        if (Vida <= 0)
+        {
+            _storyTeller.Narrador = $"[{Nome}]: ";
+            _storyTeller.Speak(FraseDeMorte);
+        }
     }
 }
