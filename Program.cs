@@ -1,7 +1,7 @@
 ﻿
 
-var fluxo = new FlowEngine();
-fluxo.Historia();
+//var fluxo = new FlowEngine();
+//fluxo.Historia();
 
 // to do.. criar uma classe para itens de cenario, EXEMPLO: ARMADILHAS
 
@@ -62,3 +62,6 @@ foreach (var line in lista)
 //var itemEngine = new ItemEngine();
 //itemEngine.PegaItem("Maca", heroi);
 //Console.WriteLine(item);
+
+var flow = new FlowEngineTeste();
+flow.ContaHistoria(0);

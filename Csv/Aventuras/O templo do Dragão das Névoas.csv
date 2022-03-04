@@ -1,0 +1,10 @@
+ID;ACAO;PARAM1;PARAM2
+1;ESTORIA;"Vocês estão na taverna "O cisne cintilante", na cidade de Myrria. Esta cidade é um movimentado entreposto comercial a meio caminho de todas as principais rotas mercantis entre os reinos do leste. Parecia ser o lugar ideal para aventureiros como vocês conseguirem algum trabalho. E vocês estavam certos. Não demorou mais do que algumas cervejas para que a ação se iniciasse."
+2;ESTORIA;"Entrando com seu esvoaçante manto vermelho e portando uma linda bola de cristal vocês reconhecem a figura de Tasderin, um dos magos mais poderosos do mundo. Ele fala em voz alta: preciso de aventureiros para perfazer uma importante tarefa em nome do protetorado do Rei. Aqueles que desejarem juntar-se a esta empreitada devem encontrar-me na última casa desta cidadela, ao lado do portão sul, onde estarei selecionando os candidatos."
+3;ESTORIA;"E ai voce aceita ver a proposta do mago ?"
+4;DECISAO;5;9
+5;ESTORIA;"Chegando até o local indicado pelo mago vocês percebem dezenas de pessoas, guerreiros de todos os tipos formando fila na porta da casa. A vez de vocês não parece demorar muito... Os guerreiros entram pela porta da frente e saem logo depois com uma expressão estranha. Alguns chateados, outros assuntados e outros ainda praguejando porque o mago não os escolheu para a missão. Comentários sobre “charlatão”, e “esse mago não sabe o que está fazendo” escapam das bocas dos mais furiosos. A vez de vocês chega. Vocês atravessam a porta simples da morada e encontram o mago sentado em algumas almofadas com a sua bola de cristal numa pequena mesa simples bem à sua frente. "Bem-vindos Aventureiros" ele diz em tom cordial. Toquem minha bola de cristal. Se forem dignos o bastante para esta missão a esfera me revelará."
+6;ESTORIA;"Aceita tocar na bola de cristal ?"
+7;DECISAO;8;9
+8;ESTORIA;"Vocês são dignos! Um grupo inteiro de aventureiros dignos da missão que eu tenho a confiar... Ajudante, diga que as entrevistas estão encerradas. Muito bem guerreiros, vamos tratar de negócios..."
+9;ESTORIA;"É uma pena que não desejem tocar a bola. Nunca saberão se são ou não dignos... Não tenho mais o que tratar com vocês... Podem ir..."
