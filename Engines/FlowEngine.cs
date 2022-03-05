@@ -34,7 +34,7 @@ class FlowEngine
 
         Turno(heroi, "Goblin");
         Turno(heroi, "Goblin");
-        Turno(heroi, "Goblin");
+        Turno(heroi, "Ganon");
 
         GameOver("TESTE DO DEV");
 
@@ -49,10 +49,10 @@ class FlowEngine
         if (caminho == 1)
         {
             storyTeller.Speak("Descontente com sua resposta, Grunden , que na verdade é Ganon, te ataca pelas costas!!");
-            batalha.Turno(monstro.Ganon(), heroi);
+            batalha.Turno(monstro.ObterMonstro("Ganon"), heroi);
             if (heroi.Vida <= 0)
             {
-                GameOver($"Voce foi morto pelo {monstro.Ganon().Nome}");
+                GameOver($"Voce foi morto pelo {monstro.ObterMonstro("Ganon").Nome}");
             }
         }
         ContarHistoria(@$"Gundren fica bem animado por {heroi.Nome} ter aceito o contrato e começa a contar sobre a viagem,dizendo apenas que ele e seus irmãos haviam encontrado “algo grande”, e vai pagar dez peças de ouro a você para escoltar os suprimentos em segurança até a Barthen Provisões, um posto de troca em Phandalin.");
@@ -69,7 +69,7 @@ class FlowEngine
             batalha.Turno(monstro.Ganon(), heroi);
             if (heroi.Vida <= 0)
             {
-                GameOver($"Voce foi morto pelo {monstro.Ganon().Nome}");
+                GameOver($"Voce foi morto pelo {monstro.ObterMonstro("Ganon").Nome}");
             }
         }
 
@@ -78,10 +78,10 @@ class FlowEngine
 
         if (heroi.Vida <= 0)
         {
-            GameOver($"Voce foi morto pelo {monstro.Goblin().Nome}");
+            GameOver($"Voce foi morto pelo {monstro.ObterMonstro("Goblin").Nome}");
         }
 
-        Console.WriteLine($"Após saquear o corpo de {monstro.Goblin().Nome} ");
+        Console.WriteLine($"Após saquear o corpo de {monstro.ObterMonstro("Goblin").Nome} ");
         //item.SimpleSword(heroi);
         item.PegaItem("SimpleSword");
 
@@ -135,16 +135,16 @@ class FlowEngine
         Environment.Exit(0);
     }
 
-    private void Turno(Personagem p1, String p2Str)
+    private void Turno(Personagem p1, String nomeMonstro)
     {
-        Turno2(p1, p2Str);
+        Turno2(p1, nomeMonstro);
         GC.Collect(); // força o destruidor ser chamado.
         Thread.Sleep(1000); // dá um pouco de tempo do GC fazer o trampo dele.
     }
 
-    private void Turno2(Personagem p1, String p2Str)
+    private void Turno2(Personagem p1, String nomeMonstro)
     {
-        var p2 = monstro.Goblin();
+        var p2 = monstro.ObterMonstro(nomeMonstro);
         batalha.Turno(p1, p2);
     }
 
