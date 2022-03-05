@@ -1,6 +1,33 @@
+using CsvHelper;
+using CsvHelper.Configuration;
+using System.Globalization;
+
 public class MonsterEngine {
 
- public Monstro AranhaGigante() {
+    private List<Monstro> _monstros { get; set; }
+
+    public MonsterEngine()
+    {
+        var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+        {
+            // PrepareHeaderForMatch = args => args.Header.ToLower(),
+            Delimiter = ";"
+        };
+
+        using (var reader = new StreamReader(Directory.GetCurrentDirectory() + "/Csv/Monstros.csv"))
+        using (var csv = new CsvReader(reader, config))
+        {
+            _monstros = csv.GetRecords<Monstro>().ToList() ;
+        }
+    }
+
+    public Monstro ObterMonstro(string nome)
+    {
+        // Linq
+        return _monstros.Where(m => m.Nome == nome).FirstOrDefault();
+    }
+
+    public Monstro AranhaGigante() {
         var AranhaGigante = new Monstro
         {
         Nome = "Aranha Gigante",
@@ -45,6 +72,8 @@ public class MonsterEngine {
         };
         return cranioEmChamas;
     }
+
+    
 
     public Monstro Cultista() {
         var cultista = new Monstro
