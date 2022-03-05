@@ -64,4 +64,4 @@ foreach (var line in lista)
 //Console.WriteLine(item);
 
 var flow = new FlowEngineTeste();
-flow.ContaHistoria(0);
+flow.ContaHistoria(0, new List<int>());

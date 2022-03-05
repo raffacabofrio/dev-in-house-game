@@ -9,8 +9,7 @@ public class FlowEngineTeste
     private dynamic _lines;
     private GameStoryTeller _storyTeller = new GameStoryTeller();
     private Personagem heroi;
-    //private List<string> _linesEstoria = new List<string>();
-    private List<int> escolhasPonteiro = new List<int>();
+
     public FlowEngineTeste()
     {
         var arquivo = new Arquivo("./Csv/Aventuras/O templo do Dragão das Névoas.csv");
@@ -25,40 +24,59 @@ public class FlowEngineTeste
         };
     }
 
-    public void ContaHistoria(int ponteiro)
+    public void ContaHistoria(int ponteiro, List<int> ponteirosIgnoraveis)
     {
         for (int i = ponteiro; i < _lines.Count; i++)
         {
-            if (_lines[i][1] == "ESTORIA")
+            if (!ponteirosIgnoraveis.Contains(i))
             {
-                _storyTeller.Speak(_lines[i][2]);
+                var acao = _lines[i][1];
+                var param1 = _lines[i][2];
+                var param2 = _lines[i][3];
+
+                if (acao == "ESTORIA")
+                    _storyTeller.Speak(param1);
+                else if (acao == "DECISAO")
+                    Decisao(param1);
+                else if (acao == "GAMEOVER")
+                {
+                    _storyTeller.Speak(param1);
+                    Environment.Exit(0);
+                }
             }
-            else if (_lines[i][1] == "DECISAO")
-            {
-                escolhasPonteiro.Add(int.Parse(_lines[i][3])); // nao
-                escolhasPonteiro.Add(int.Parse(_lines[i][2])); // sim
-                Escolha(heroi, "nao", "sim");
-            }
+
         }
     }
-    public void Escolha(Personagem heroi, string opcao_1, string opcao_2)
+    private void Decisao(string param1)
     {
-
+        string[] paramVetor = param1.Split(",");
+        List<int> ponteiros = new List<int>();
+        List<string> opcoes = new List<string>();
         var decisao = 1;
         bool inputValido2 = false;
 
-        List<string> caminhos = new List<string> { opcao_1, opcao_2 };
+
+        // defini os ponteiros e as opcoes
+        foreach (string param in paramVetor)
+        {
+            var vetor2 = param.Split(":");
+            ponteiros.Add(int.Parse(vetor2[0]) - 1);
+            opcoes.Add(vetor2[1]);
+        }
+
         do
         {
 
             int x = 0;
-            foreach (string opcoes in caminhos)
+            foreach (string opcao in opcoes)
             {
-                Console.WriteLine($"{opcoes} [{x}]");
+                Console.WriteLine($"{opcao} [{x}]");
                 x++;
             }
+
             var NumeroValido = Int32.TryParse(Console.ReadLine(), out decisao);
-            if (!NumeroValido || decisao >= caminhos.Count)
+
+            if (!NumeroValido || decisao >= opcoes.Count)
             {
                 Console.WriteLine("Voce nao  digitou uma opcao valida!!, Digite novamente");
             }
@@ -66,18 +84,18 @@ public class FlowEngineTeste
             {
                 inputValido2 = true;
             }
+
         } while (!inputValido2);
 
-        if (decisao == 1)
-        {
-            ContaHistoria(escolhasPonteiro[decisao - 1]);
-        }
-        else
-        {
-            Console.WriteLine("erro");
-        }
-        //return decisao;
+        int ponteiro = ponteiros[decisao];
 
+        // retira da lista o ponteiro escolhido
+        ponteiros.Remove(ponteiro);
+
+        ContaHistoria(ponteiro, ponteiros);
     }
 }
+
+
+
 
