@@ -10,12 +10,19 @@ public class Personagem
 
 }
 
+public class Heroi : Personagem
+{
+   public int XpGanho { get; set; }
+    public int Nivel { get; set; }
+}
+
 
 public class Monstro : Personagem
 {
     private StoryTellerEngine _storyTeller;
 
-    public string FraseDeMorte { get; set; } = "FRASE DE MORTE PADR√O.";
+    public string FraseDeMorte { get; set; } = "FRASE DE MORTE PADR√ÉO.";
+    public int Xp { get; set; }
 
     public override int Vida
     {
@@ -43,6 +50,8 @@ public class Monstro : Personagem
         AtaqueCritico = monstro.AtaqueCritico;
         Armadura = monstro.Armadura;
         FraseDeMorte = monstro.FraseDeMorte;
+        Xp = monstro.Xp;
+        
     }
 
     private void Morte()
