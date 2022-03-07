@@ -8,5 +8,5 @@ ID;ACAO;PARAM1;PARAM2
 7;ESTORIA;"Aceita tocar na bola de cristal ?";""
 8;DECISAO;9:sim,10:não;""
 9;ESTORIA;"Vocês são dignos! Um grupo inteiro de aventureiros dignos da missão que eu tenho a confiar... Ajudante, diga que as entrevistas estão encerradas. Muito bem guerreiros, vamos tratar de negócios...";""
-10;ESTORIA;"É uma pena que não desejem tocar a bola. Nunca saberão se são ou não dignos... Não tenho mais o que tratar com vocês... Podem ir...";""
+10;GAMEOVER;"É uma pena que não desejem tocar a bola. Nunca saberão se são ou não dignos... Não tenho mais o que tratar com vocês... Podem ir...";""
 11;ESTORIA;"Tasderin está selecionando aventureiros para a sua missão. A sua esfera de cristal mede a capacidade que os jogadores têm de conseguir o seu feito. Aqueles que são reprovados no teste o fazem por sua falta de caráter ou fraqueza de vontade e não por suas habilidades combativas.";""
