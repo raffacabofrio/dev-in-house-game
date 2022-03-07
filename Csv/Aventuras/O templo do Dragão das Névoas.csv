@@ -10,5 +10,5 @@ ID;ACAO;PARAM1;PARAM2
 9;ESTORIA;"Vocês são dignos! Um grupo inteiro de aventureiros dignos da missão que eu tenho a confiar... Ajudante, diga que as entrevistas estão encerradas. Muito bem guerreiros, vamos tratar de negócios...";""
 10;ESTORIA;"Pagara por isso, lutando com o goblin...";""
 11;DECISAO;12:lutar,13:fugir;
-12;BATALHA;goblin;""
+12;BATALHA;Goblin;""
 13;GAMEOVER;"Nao lutarei com nenhum Goblin";""
