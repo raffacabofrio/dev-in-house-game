@@ -10,7 +10,6 @@ public class MonsterEngine {
     {
         var config = new CsvConfiguration(CultureInfo.InvariantCulture)
         {
-            // PrepareHeaderForMatch = args => args.Header.ToLower(),
             Delimiter = ";"
         };
 
@@ -24,7 +23,12 @@ public class MonsterEngine {
     public Monstro ObterMonstro(string nome)
     {
         // Linq
-        return _monstros.Where(m => m.Nome == nome).FirstOrDefault();
+        var monstro = _monstros.Where(m => m.Nome == nome).FirstOrDefault();
+
+        if(monstro == null) return new Monstro();
+
+        var monstroCopy = new Monstro(monstro);
+        return monstroCopy;
     }
 
     public Monstro AranhaGigante() {

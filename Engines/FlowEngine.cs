@@ -26,11 +26,11 @@ class FlowEngine
             Nome = nome,
             Vida = 50,
             Armadura = 5,
-            Ataque = 100,
-            AtaqueCritico = 10,
+            Ataque = 200,
+            AtaqueCritico = 400,
         };
 
-        storyTeller.Speak("Luta com 3 Goblins em sequência pra testar o método destruidor.");
+        storyTeller.Speak("Lutas em sequência pra testar a frase de morte.");
 
         Turno(heroi, "Goblin");
         Turno(heroi, "Goblin");
@@ -136,13 +136,6 @@ class FlowEngine
     }
 
     private void Turno(Personagem p1, String nomeMonstro)
-    {
-        Turno2(p1, nomeMonstro);
-        GC.Collect(); // força o destruidor ser chamado.
-        Thread.Sleep(1000); // dá um pouco de tempo do GC fazer o trampo dele.
-    }
-
-    private void Turno2(Personagem p1, String nomeMonstro)
     {
         var p2 = monstro.ObterMonstro(nomeMonstro);
         batalha.Turno(p1, p2);

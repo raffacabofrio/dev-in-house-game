@@ -17,7 +17,7 @@ public class BattleEngine
                 return;
             }
 
-            Thread.Sleep(2000);
+            Thread.Sleep(500);
             Ataque(p2, p1);
             if (p1.Vida <= 0)
             {
@@ -61,9 +61,8 @@ public class BattleEngine
             return;
         }
 
-        oponente.Vida -= atk;
-
         BattleStoryTeller.Speak($"{atacante.Nome} atacou {oponente.Nome} com sucesso. {oponente.Nome} recebeu {atk} de dano.");
+        oponente.Vida -= atk;
     }
 
 };

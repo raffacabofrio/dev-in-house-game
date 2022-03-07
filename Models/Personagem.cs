@@ -1,7 +1,9 @@
 public class Personagem
 {
-    public string Nome { get; set; }
-    public int Vida { get; set; }
+    protected int _vida;
+    
+    public string Nome { get; set; } = "";
+    public virtual int Vida { get => _vida; set => _vida = value; }
     public int Ataque { get; set; }
     public int Armadura { get; set; }
     public int AtaqueCritico { get; set; }
@@ -15,18 +17,39 @@ public class Monstro : Personagem
 
     public string FraseDeMorte { get; set; } = "FRASE DE MORTE PADRÃO.";
 
+    public override int Vida
+    {
+        get => _vida;
+        set
+        {
+            if (value <= 0)
+                Morte();
+
+            _vida = value;
+        }
+    }
+
 
     public Monstro()
     {
         _storyTeller = new MonsterStoryTeller();
     }
 
-    ~Monstro()
+    public Monstro(Monstro monstro) : this()
     {
-        if (Vida <= 0)
-        {
-            _storyTeller.Narrador = $"[{Nome}]: ";
-            _storyTeller.Speak(FraseDeMorte);
-        }
+        Nome = monstro.Nome;
+        Vida = monstro.Vida;
+        Ataque = monstro.Ataque;
+        AtaqueCritico = monstro.AtaqueCritico;
+        Armadura = monstro.Armadura;
+        FraseDeMorte = monstro.FraseDeMorte;
     }
+
+    private void Morte()
+    {
+        _storyTeller.Narrador = $"[{Nome}]: ";
+        _storyTeller.Speak(FraseDeMorte);
+    }
+
+
 }
