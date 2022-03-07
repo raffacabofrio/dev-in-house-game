@@ -44,8 +44,9 @@ public class FlowEngineTeste
                     Environment.Exit(0);
                 }
             }
-
         }
+        // acaba com o loop, acredito que a criação do loop aconteceu pq as chamadas das funçoes ficavam em pilha.
+        Environment.Exit(0);
     }
     private void Decisao(string param1)
     {
@@ -86,6 +87,7 @@ public class FlowEngineTeste
             }
 
         } while (!inputValido2);
+
 
         int ponteiro = ponteiros[decisao];
 
