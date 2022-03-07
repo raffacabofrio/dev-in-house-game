@@ -9,6 +9,8 @@ public class FlowEngineTeste
     private dynamic _lines;
     private GameStoryTeller _storyTeller = new GameStoryTeller();
     private Personagem heroi;
+    private BattleEngine batalha;
+    private MonsterEngine monstro;
 
     public FlowEngineTeste()
     {
@@ -22,6 +24,8 @@ public class FlowEngineTeste
             Ataque = 100,
             AtaqueCritico = 10,
         };
+        batalha = new BattleEngine();
+        monstro = new MonsterEngine();
     }
 
     public void ContaHistoria(int ponteiro, List<int> ponteirosIgnoraveis)
@@ -38,6 +42,10 @@ public class FlowEngineTeste
                     _storyTeller.Speak(param1);
                 else if (acao == "DECISAO")
                     Decisao(param1);
+                else if (acao == "BATALHA")
+                {
+                    Turno(heroi, param1);
+                }
                 else if (acao == "GAMEOVER")
                 {
                     _storyTeller.Speak(param1);
@@ -48,6 +56,7 @@ public class FlowEngineTeste
         // acaba com o loop, acredito que a criação do loop aconteceu pq as chamadas das funçoes ficavam em pilha.
         Environment.Exit(0);
     }
+
     private void Decisao(string param1)
     {
         string[] paramVetor = param1.Split(",");
@@ -95,6 +104,19 @@ public class FlowEngineTeste
         ponteiros.Remove(ponteiro);
 
         ContaHistoria(ponteiro, ponteiros);
+    }
+
+    private void Turno(Personagem p1, String nomeMonstro)
+    {
+        Turno2(p1, nomeMonstro);
+        GC.Collect(); // força o destruidor ser chamado.
+        Thread.Sleep(1000); // dá um pouco de tempo do GC fazer o trampo dele.
+    }
+
+    private void Turno2(Personagem p1, String nomeMonstro)
+    {
+        var p2 = monstro.ObterMonstro(nomeMonstro);
+        batalha.Turno(p1, p2);
     }
 }
 
