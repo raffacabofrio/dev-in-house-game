@@ -12,8 +12,8 @@ public class Personagem
 
 public class Heroi : Personagem
 {
-   public int XpGanho { get; set; }
-    public int Nivel { get; set; }
+    public int XpGanho { get; set; } = 0;
+    public int Nivel { get; set; } = 0;
 }
 
 
@@ -22,7 +22,7 @@ public class Monstro : Personagem
     private StoryTellerEngine _storyTeller;
 
     public string FraseDeMorte { get; set; } = "FRASE DE MORTE PADRÃO.";
-    public int Xp { get; set; }
+    public int Xp { get; set; } = 10;
 
     public override int Vida
     {
