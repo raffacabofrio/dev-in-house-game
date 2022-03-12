@@ -15,9 +15,8 @@ Console.WriteLine("Bem vindo ao nosso Game");
 Console.WriteLine(title);
 
 
-
-var fluxo = new FlowEngineTeste();
-fluxo.ContaHistoria(0,new List<int>( ));
+var fluxo = new FlowEngine();
+fluxo.ContaHistoria();
 
 
 

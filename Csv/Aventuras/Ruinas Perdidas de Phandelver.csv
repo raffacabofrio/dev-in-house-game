@@ -1,4 +1,4 @@
-ID;ACAO;PARAM1;PARAM2
+Passo;Acao;Param1;Param2
 1;ESTORIA;"Na cidade de Gerudo um anão chamado Gundren tenta lhe contratar para escoltar uma carroça de suprimentos até a vila sem lei de Phandalin, que fica há dois dias e viagem a sudeste da cidade.";
 2;ESTORIA;Voce aceitará o contrato?;
 3;DECISAO;6;4
@@ -6,14 +6,4 @@ ID;ACAO;PARAM1;PARAM2
 5;BATALHA;Ganon;
 6;ESTORIA;"Gundren fica bem animado por {heroi.Nome} ter aceito o contrato e começa a contar sobre a viagem,dizendo apenas que ele e seus irmãos haviam encontrado “algo grande”, e vai pagar dez peças de ouro a você para escoltar os suprimentos em segurança até a Barthen Provisões, um posto de troca em Phandalin.";
 7;ESTORIA;"A jornada o leva ao sul pela Estrada Alta até a Trilha Triboar, que fica ao leste. Perto do meio dia , vocês são emboscados por goblins saqueadores da tribo Dentefi .";
-8;;;
-9;;;
-10;;;
-11;;;
-12;;;
-13;;;
-14;;;
-15;;;
-16;;;
-17;;;
-18;;;
+8;GAMEOVER;"Vc chegou ao fim. Em breve teremos mais aventuras.";""
