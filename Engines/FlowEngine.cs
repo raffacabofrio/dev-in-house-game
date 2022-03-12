@@ -1,146 +1,153 @@
-﻿
-class FlowEngine
+﻿using CsvHelper;
+using CsvHelper.Configuration;
+using System.Globalization;
+
+public class FlowEngine
 {
+    private List<AventuraPasso> _aventura;
+    private GameStoryTeller _storyTeller = new GameStoryTeller();
+    private Personagem heroi;
     private BattleEngine batalha;
     private MonsterEngine monstro;
-    private ItemEngine item;
-    private GameStoryTeller storyTeller;
 
     public FlowEngine()
     {
-        batalha = new BattleEngine();
-        monstro = new MonsterEngine();
-        item = new ItemEngine();
-        storyTeller = new GameStoryTeller();
-    }
-
-    public void Historia()
-    {    
-        //storyTeller.Speak("Qual e o seu nome heroi ? ");
-        //var nome = Console.ReadLine();
-
-        var nome = "Linq";
-
-        var heroi = new Personagem
+        var config = new CsvConfiguration(CultureInfo.InvariantCulture)
         {
-            Nome = nome,
-            Vida = 50,
-            Armadura = 5,
-            Ataque = 200,
-            AtaqueCritico = 400,
+            Delimiter = ";"
         };
 
-        storyTeller.Speak("Lutas em sequência pra testar a frase de morte.");
-
-        Turno(heroi, "Goblin");
-        Turno(heroi, "Goblin");
-        Turno(heroi, "Ganon");
-
-        GameOver("TESTE DO DEV");
-
-
-      
-
-        storyTeller.Speak(@"Na cidade de Gerudo um anão chamado Gundren tenta lhe contratar para escoltar uma carroça de suprimentos até a vila sem lei de Phandalin,
-        que fica há dois dias e viagem a sudeste da cidade.");
-
-        storyTeller.Speak("Voce aceitará o contrato?");
-
-        var caminho = Fluxo(heroi, "Sim", "Não");
-        item.PegaItem("SimpleSword");
-        if (caminho == 1)
+        using (var reader = new StreamReader(Directory.GetCurrentDirectory() + "/Csv/Aventuras/O templo do Dragão das Névoas.csv"))
+        using (var csv = new CsvReader(reader, config))
         {
-            storyTeller.Speak("Descontente com sua resposta, Grunden , que na verdade é Ganon, te ataca pelas costas!!");
-            batalha.Turno(monstro.ObterMonstro("Ganon"), heroi);
-            if (heroi.Vida <= 0)
-            {
-                GameOver($"Voce foi morto pelo {monstro.ObterMonstro("Ganon").Nome}");
-            }
-        }
-        ContarHistoria(@$"Gundren fica bem animado por {heroi.Nome} ter aceito o contrato e começa a contar sobre a viagem,dizendo apenas que ele e seus irmãos haviam encontrado “algo grande”, e vai pagar dez peças de ouro a você para escoltar os suprimentos em segurança até a Barthen Provisões, um posto de troca em Phandalin.");
-
-        ContarHistoria(@$"A jornada o leva ao sul pela Estrada Alta até a Trilha Triboar, que fica ao leste. Perto do meio dia , vocês são emboscados por goblins saqueadores da tribo Dentefi .");
-
-        storyTeller.Speak($"O que {heroi.Nome} fará: ");
-
-        caminho = Fluxo(heroi, "Lutar", "Correr");
-
-        if (caminho == 1)
-        {
-            storyTeller.Speak("Descontente com sua resposta, Grunden , que na verdade é Ganon, te ataca pelas costas!!");
-            batalha.Turno(monstro.Ganon(), heroi);
-            if (heroi.Vida <= 0)
-            {
-                GameOver($"Voce foi morto pelo {monstro.ObterMonstro("Ganon").Nome}");
-            }
+            _aventura = csv.GetRecords<AventuraPasso>().ToList();
         }
 
-
-        Turno(heroi, "Goblin");
-
-        if (heroi.Vida <= 0)
+        heroi = new Personagem
         {
-            GameOver($"Voce foi morto pelo {monstro.ObterMonstro("Goblin").Nome}");
-        }
+            Nome = "andre",
+            Vida = 20,
+            Armadura = 5,
+            Ataque = 10,
+            AtaqueCritico = 20,
+        };
 
-        Console.WriteLine($"Após saquear o corpo de {monstro.ObterMonstro("Goblin").Nome} ");
-        //item.SimpleSword(heroi);
-        item.PegaItem("SimpleSword");
-
-        Console.WriteLine($"Após a batalha, {heroi.Nome} e Grunden chegam em segurança até a Barthen Provisões");
-        Console.WriteLine($"{heroi.Nome} recebe 10 moedas de ouro.");
-        Console.WriteLine("Continua ...");
+        batalha = new BattleEngine();
+        monstro = new MonsterEngine();
     }
-    public int Fluxo(Personagem heroi, string opcao_1, string opcao_2)
+
+    public void ContaHistoria()
+    {     
+        var fim = false;
+        var passoAtual = new AventuraPasso();
+        var passoAtualIndex = 1;
+
+        while (!fim)
+        {
+
+            passoAtual = ObterPassoAtual(passoAtualIndex);
+
+            if (passoAtual.Acao == "ESTORIA")
+            {
+                _storyTeller.Speak(passoAtual.Param1);
+                passoAtualIndex++;
+            }
+
+            if (passoAtual.Acao == "DECISAO")
+            {
+                passoAtualIndex = Decisao(passoAtual.Param1);
+            }
+
+            if (passoAtual.Acao == "BATALHA")
+            {
+                Batalha(heroi, passoAtual.Param1);
+                passoAtualIndex++;
+            }
+
+
+            if (passoAtual.Acao == "GAMEOVER")
+            {
+                GameOver(passoAtual.Param1);
+                fim = true;
+            }
+
+
+        }
+        // acaba com o loop, acredito que a criação do loop aconteceu pq as chamadas das funçoes ficavam em pilha.
+        Environment.Exit(0);
+    }
+
+    private AventuraPasso ObterPassoAtual(int passoAtualIndex)
     {
+        var passo = _aventura.FirstOrDefault(a => a.Passo == passoAtualIndex);
+
+        if (passo == null) return new AventuraPasso { Acao = "GameOver", Param1 = $"Ocorreu um erro. Passo não encontrado ({passoAtualIndex})." };
+
+        return passo;
+    }
+
+    private int Decisao(string param1)
+    {
+        string[] paramVetor = param1.Split(",");
+        List<int> passos = new List<int>();
+        List<string> opcoes = new List<string>();
+
+        // defini os ponteiros e as opcoes
+        foreach (string param in paramVetor)
+        {
+            var vetor2 = param.Split(":");
+            passos.Add(int.Parse(vetor2[0]));
+            opcoes.Add(vetor2[1]);
+        }
+
 
         var decisao = 1;
-        bool inputValido2 = false;
+        bool inputValido = false;
 
-        List<string> caminhos = new List<string> { opcao_1, opcao_2 };
         do
         {
 
             int x = 0;
-            foreach (string opcoes in caminhos)
+            foreach (string opcao in opcoes)
             {
-                Console.WriteLine($"{opcoes} [{x}]");
+                Console.WriteLine($"{opcao} [{x}]");
                 x++;
             }
+
             var NumeroValido = Int32.TryParse(Console.ReadLine(), out decisao);
-            if (!NumeroValido || decisao >= caminhos.Count)
+
+            if (!NumeroValido || decisao >= opcoes.Count || decisao < 0)
             {
                 Console.WriteLine("Voce nao  digitou uma opcao valida!!, Digite novamente");
             }
             else
             {
-                inputValido2 = true;
+                inputValido = true;
             }
-        } while (!inputValido2);
 
-        return decisao;
+        } while (!inputValido);
 
+
+        int passoSelecionado = passos[decisao];
+        return passoSelecionado;
     }
 
-    public void ContarHistoria(string historia)
-    {
-        historia = historia.Replace("  ", " ");
-        // historia = historia.Replace("\n" , "");
-        Console.WriteLine(historia);
-        Console.WriteLine("Pressione enter para continuar");
-        Console.ReadKey();
-
-    }
-    public void GameOver(string mensagem)
-    {
-        Console.WriteLine(mensagem);
-        Environment.Exit(0);
-    }
-
-    private void Turno(Personagem p1, String nomeMonstro)
+    private void Batalha(Personagem p1, String nomeMonstro)
     {
         var p2 = monstro.ObterMonstro(nomeMonstro);
         batalha.Turno(p1, p2);
+
+        if (p1.Vida <= 0)
+            GameOver($"Game over! {p1.Nome} foi morto pelo {p2.Nome}.");
     }
 
+    public void GameOver(string mensagem)
+    {
+        _storyTeller.Speak(mensagem);
+        Environment.Exit(0);
+    }
 }
+
+
+
+
